@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class CategoryController extends Controller
 {
     function AddCategory(){
-        return view('Backend.category-add');
+        return view('Backend.Category.category-add');
     }
 
     function CategoryPost(Request $request){
@@ -25,20 +25,20 @@ class CategoryController extends Controller
     // function CategoryList(){
     //     $category=Category::paginate(5);
     //     $count=Category::count();
-    //     return view('Backend.category-list',compact('category','count'));
+    //     return view('Backend.Category.category-list',compact('category','count'));
     // }
 
     function CategoryList(){
         $category=Category::paginate(5);
         $count=Category::count();
-        return view('Backend.category-list',[
+        return view('Backend.Category.category-list',[
             'category'=>Category::paginate(5),
             'count'=>$count=Category::count(),
         ]);
     }
 
     function CategoryEdit($id){
-        return view('Backend.category-edit',[
+        return view('Backend.Category.category-edit',[
             'category'=>Category::findOrFail($id),
         ]);
     }
@@ -60,7 +60,7 @@ class CategoryController extends Controller
     }
 
     function TrashList(){
-        return view('Backend.tras-list',[
+        return view('Backend.Category.tras-list',[
             'trash'=>Category::onlyTrashed()->paginate(10),
             't_count'=>$t_count=Category::onlyTrashed()->count(),
         ]);

@@ -7,7 +7,7 @@
         </nav>
         <hr>
         <div class="row">
-            <div class="col-md-12 col-sm-12 ">
+            <div class="col-sm-10 m-auto">
                 <div class="x_panel">
                     <div class="text-center">
                         <h2>Add Categorys</h2>
