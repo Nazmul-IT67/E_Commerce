@@ -68,6 +68,14 @@
                                     </ul>
                                 </li>
 
+                                <li><a><i class="fa fa-bar-chart"></i>Sub Category<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ url('subcategory-add') }}">Add SubCategory</a></li>
+                                        <li><a href="{{ url('subcategory-list') }}">All SubCategory</a></li>
+                                        <li><a href="{{ url('trash-scategory') }}">Trash SubCategory</a></li>
+                                    </ul>
+                                </li>
+
                                 <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">

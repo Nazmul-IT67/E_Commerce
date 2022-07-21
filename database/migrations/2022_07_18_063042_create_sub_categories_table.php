@@ -17,6 +17,7 @@ class CreateSubCategoriesTable extends Migration
             $table->id();
             $table->string('subcategory_name')->nullable();
             $table->string('slug')->nullable();
+            $table->foreignId('category_id');
             $table->timestamps();
             $table->softDeletes();
         });
