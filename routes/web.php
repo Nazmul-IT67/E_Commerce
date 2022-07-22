@@ -33,5 +33,9 @@ Route::get('category-sofd/{id}', [CategoryController::class, 'CategorySofd'])->n
 Route::get('subcategory-add', [SubCategoryController::class, 'SubCategoryAdd'])->name('SubCategoryAdd');
 Route::POST('subcategory-post', [SubCategoryController::class, 'SubCategoryPost'])->name('SubCategoryPost');
 Route::get('subcategory-list', [SubCategoryController::class, 'SubCategoryList'])->name('SubCategoryList');
+Route::get('trash-scategory', [SubCategoryController::class, 'TrashSubCategory'])->name('TrashSubCategory');
 Route::get('subcategory-edit/{id}', [SubCategoryController::class, 'SubCategoryEdit'])->name('SubCategoryEdit');
+Route::POST('subcategory-update', [SubCategoryController::class, 'SubCategoryUpdate'])->name('SubCategoryUpdate');
 Route::get('subcategory-delete/{id}', [SubCategoryController::class, 'SubCategoryDelete'])->name('SubCategoryDelete');
+Route::get('subcategory-reset/{id}', [SubCategoryController::class, 'SubCategoryReset'])->name('SubCategoryReset');
+Route::get('subcategory-sofd/{id}', [SubCategoryController::class, 'SubCategorySofd'])->name('SubCategorySofd');

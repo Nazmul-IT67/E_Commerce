@@ -16,27 +16,29 @@
 
                     <div class="x_content">
                         <br>
-                        <form action="{{ url('subcategory-post') }}" method="POST">
+                        <form action="{{ url('subcategory-update') }}" method="POST">
                             @csrf
+                            <input type="hidden" value="{{ $subcategory->id }}" name="subcategory_id">
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="category_id">Category Name</label>
-                                {{-- <div class="col-md-6 col-sm-6 ">
+                                <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control" name="category_id" id="category_id">
                                         <option value="">Category Name</option>
                                         @foreach ($categorys as $value)
-                                            <option value="{{ $value->id }}">{{ $value->category_name }}</option>
+                                            <option @if ($subcategory->category_id == $value->id)selected
+                                            @endif value="{{ $value->id }}">{{ $value->category_name }}</option>
                                         @endforeach
                                     </select>
                                     @error('category_id')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                </div> --}}
+                                </div>
                             </div>
 
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="subcategory_name">SubCategory Name</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input class="form-control @error('subcategory_name') is-invalid @enderror" type="text" id="subcategory_name" name="subcategory_name" value="{{ old('subcategory_name') }}">
+                                    <input class="form-control @error('subcategory_name') is-invalid @enderror" type="text" id="subcategory_name" name="subcategory_name" value="{{ $subcategory->subcategory_name ?? old('subcategory_name') }}">
                                     @error('subcategory_name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
