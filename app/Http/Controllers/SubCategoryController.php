@@ -11,8 +11,11 @@ use Illuminate\Support\Carbon;
 class SubCategoryController extends Controller
 {
     function SubCategoryAdd(){
+        $last_value=collect(request()->segments())->last();
+        $last=Str::of($last_value)->replace('-','');
         return view('Backend.Subcategory.subcategory-add',[
             'categorys'=>Category::orderBy('category_name', 'asc')->get(),
+            'last'=>$last,
         ]);
     }
 
@@ -33,9 +36,12 @@ class SubCategoryController extends Controller
 
 
     function SubCategoryList(){
+        $last_value=collect(request()->segments())->last();
+        $last=Str::of($last_value)->replace('-','');
         return view('Backend.Subcategory.subcategory-list',[
             'subcategory'=>SubCategory::orderBy('subcategory_name','asc')->paginate(5),
             'sub_count'=>$sub_count=SubCategory::count(),
+            'last'=>$last
         ]);
     }
 
@@ -67,9 +73,12 @@ class SubCategoryController extends Controller
     }
 
     function TrashSubCategory(){
+        $last_value=collect(request()->segments())->last();
+        $last=Str::of($last_value)->replace('-','');
         return view('Backend.Subcategory.trash-scategory',[
             'subtrash'=>SubCategory::onlyTrashed()->paginate(10),
             'sub_count'=>$sub_count=SubCategory::onlyTrashed()->count(),
+            'last'=>$last,
         ]);
     }
 

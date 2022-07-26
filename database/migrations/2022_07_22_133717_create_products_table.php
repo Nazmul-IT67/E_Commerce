@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->uniqid();
-            $table->foreignId('category_id')->nullable();
+            $table->foreignId('category_id');
             $table->foreignId('subcategory_id');
             $table->string('summery');
             $table->text('description');

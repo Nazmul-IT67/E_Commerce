@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Category;
 use Carbon\Carbon;
 
 class CategoryController extends Controller
 {
     function AddCategory(){
-        return view('Backend.Category.category-add');
+        $last_value=collect(request()->segments())->last();
+        $last=Str::of($last_value)->replace('-','');
+        return view('Backend.Category.category-add',[
+            'last'=>$last,
+        ]);
     }
 
     function CategoryPost(Request $request){
@@ -29,11 +34,14 @@ class CategoryController extends Controller
     // }
 
     function CategoryList(){
+        $last_value=collect(request()->segments())->last();
+        $last=Str::of($last_value)->replace('-','');
         $category=Category::paginate(5);
         $count=Category::count();
         return view('Backend.Category.category-list',[
             'category'=>Category::paginate(5),
             'count'=>$count=Category::count(),
+            'last'=>$last,
         ]);
     }
 
@@ -60,9 +68,12 @@ class CategoryController extends Controller
     }
 
     function TrashList(){
+        $last_value=collect(request()->segments())->last();
+        $last=Str::of($last_value)->replace('-','');
         return view('Backend.Category.tras-list',[
             'trash'=>Category::onlyTrashed()->paginate(10),
             't_count'=>$t_count=Category::onlyTrashed()->count(),
+            'last'=>$last,
         ]);
     }
 

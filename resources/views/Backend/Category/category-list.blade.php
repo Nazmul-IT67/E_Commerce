@@ -2,10 +2,9 @@
 @section('contant')
     <div class="right_col" role="main">
         <!-- top tiles -->
-        <nav>
-            <a href="{{ url('dashboard') }}">
-                <h6><i style="font-size: 18px" class="fa fa-home"></i> Dashboard</h6>
-            </a>
+        <nav class="text-capitalize">
+            <a href="{{ url('dashboard') }}">Dashboard /</a>
+            <span>{{ $last }}</span>
         </nav>
         <hr>
         <div class="row">

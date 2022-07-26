@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,10 @@ Route::POST('subcategory-update', [SubCategoryController::class, 'SubCategoryUpd
 Route::get('subcategory-delete/{id}', [SubCategoryController::class, 'SubCategoryDelete'])->name('SubCategoryDelete');
 Route::get('subcategory-reset/{id}', [SubCategoryController::class, 'SubCategoryReset'])->name('SubCategoryReset');
 Route::get('subcategory-sofd/{id}', [SubCategoryController::class, 'SubCategorySofd'])->name('SubCategorySofd');
+
+/**-----Backend Products Routes----**/
+Route::get('product-add', [ProductController::class, 'ProductAdd'])->name('ProductAdd');
+Route::POST('product-post', [ProductController::class, 'ProductPOST'])->name('ProductPOST');
+Route::get('product-list', [ProductController::class, 'ProductList'])->name('ProductList');
+Route::get('product-trash', [ProductController::class, 'ProductTrash'])->name('ProductTrash');
+Route::get('sub-cat/{id}', [ProductController::class, 'SubCat'])->name('SubCat');

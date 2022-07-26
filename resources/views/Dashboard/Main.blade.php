@@ -76,6 +76,14 @@
                                     </ul>
                                 </li>
 
+                                <li><a><i class="fa fa-list-alt" aria-hidden="true"></i>Products<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('ProductAdd') }}">Add Product</a></li>
+                                        <li><a href="{{ route('ProductList') }}">All Product</a></li>
+                                        <li><a href="{{ route('ProductTrash') }}">Trash Product</a></li>
+                                    </ul>
+                                </li>
+
                                 <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
@@ -189,6 +197,7 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('assets/build/js/custom.min.js') }}"></script>
+    @yield('footer_js')
 
 </body>
 
