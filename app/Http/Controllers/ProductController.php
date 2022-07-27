@@ -61,6 +61,7 @@ class ProductController extends Controller
         //     // $new->thumbnail=$ext;
         //     // $new->save();
         // }
+
         return redirect('product-list')->with('success', 'SubCategory Add Successfull');
     }
 
