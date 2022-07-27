@@ -47,3 +47,4 @@ Route::POST('product-post', [ProductController::class, 'ProductPost'])->name('Pr
 Route::get('product-list', [ProductController::class, 'ProductList'])->name('ProductList');
 Route::get('product-trash', [ProductController::class, 'ProductTrash'])->name('ProductTrash');
 Route::get('sub-cat/{id}', [ProductController::class, 'SubCat'])->name('SubCat');
+Route::get('product-edit/{id}', [ProductController::class, 'ProductEdit'])->name('ProductEdit');

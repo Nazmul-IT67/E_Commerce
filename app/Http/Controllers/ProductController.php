@@ -80,4 +80,10 @@ class ProductController extends Controller
         $sub_cat=SubCategory::where('category_id', $id)->get();
         return response()->json($sub_cat);
     }
+
+    function ProductEdit(){
+        return view('Backend.Product.product-edit',[
+            'categorys'=>Category::orderBy('category_name','asc')->get(),
+        ]);
+    }
 }

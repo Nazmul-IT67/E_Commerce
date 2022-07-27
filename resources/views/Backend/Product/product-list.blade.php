@@ -40,10 +40,11 @@
                                                             <th>Slyg</th>
                                                             <th>Category</th>
                                                             <th>SubCategory</th>
+                                                            <th>Summery</th>
                                                             <th>Price</th>
                                                             <th>Thumbnail</th>
-                                                            <th>Created_AT</th>
-                                                            <th>Updated_AT</th>
+                                                            {{-- <th>Created_AT</th>
+                                                            <th>Updated_AT</th> --}}
                                                             <th>Status</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -57,16 +58,17 @@
                                                                 <td>{{ $user->slug }}</td>
                                                                 <td>{{ $user->category->category_name }}</td>
                                                                 <td>{{ $user->subcategory->subcategory_name }}</td>
+                                                                <td>{{ Str::limit($user->summery, 20,) }}</td>
                                                                 <td>{{ $user->price }}</td>
                                                                 <td> <img src="images/{{ $user->thumbnail }}" alt="" width="70"></td>
-                                                                <td>{{ $user->created_at !=null ? $user->created_at->diffForHumans():'N/A' }}</td>
-                                                                <td>{{ $user->updated_at !=null ? $user->updated_at->diffForHumans():'N/A' }}</td>
+                                                                {{-- <td>{{ $user->created_at !=null ? $user->created_at->diffForHumans():'N/A' }}</td>
+                                                                <td>{{ $user->updated_at !=null ? $user->updated_at->diffForHumans():'N/A' }}</td> --}}
                                                                 <td>
                                                                     <a href=""><button class="btn btn-success">Active</button></a>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="{{ url('subcategory-edit') }}/{{ $user->id }}"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
-                                                                    <a href="{{ url('subcategory-delete') }}/{{ $user->id }}"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
+                                                                    <a href="{{ route('ProductEdit',$user->id) }}"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
+                                                                    {{-- <a href="{{ url('subcategory-delete') }}/{{ $user->id }}"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a> --}}
                                                                 </td>
                                                             </tr>
                                                         @endforeach
