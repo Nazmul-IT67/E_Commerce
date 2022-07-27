@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="x_panel">
                     <div class="text-center">
-                        <h2>All Products</h2>
+                        <h2>All Products({{ $p_count }})</h2>
                         <div class="clearfix"></div>
                     </div>
                     @if (session('success'))
@@ -23,7 +23,7 @@
                     </div>
                     @endif
                     <div class="text-right">
-                        <a href="{{ url('subcategory-add') }}"><i class="fa fa-plus">Add</i></a>
+                        <a href="{{ url('product-add') }}"><i class="fa fa-plus">Add</i></a>
                     </div>
                     <div class="x_content">
                         <div class="row">
@@ -36,9 +36,12 @@
                                                     <thead class="text-center">
                                                         <tr>
                                                             <th>SL</th>
-                                                            <th style="width: 150px">SubCategory Name</th>
+                                                            <th style="width: 150px">Product Title</th>
                                                             <th>Slyg</th>
                                                             <th>Category</th>
+                                                            <th>SubCategory</th>
+                                                            <th>Price</th>
+                                                            <th>Thumbnail</th>
                                                             <th>Created_AT</th>
                                                             <th>Updated_AT</th>
                                                             <th>Status</th>
@@ -47,12 +50,15 @@
                                                     </thead>
 
                                                     <tbody class="text-center">
-                                                        {{-- @foreach ($subcategory as $key=> $user)
+                                                        @foreach ($product as $key=> $user)
                                                             <tr>
-                                                                <td>{{ $subcategory->firstItem() +$key}}</td>
-                                                                <td>{{ $user->subcategory_name }}</td>
+                                                                <td>{{ $product->firstItem() +$key}}</td>
+                                                                <td>{{ $user->title }}</td>
                                                                 <td>{{ $user->slug }}</td>
                                                                 <td>{{ $user->category->category_name }}</td>
+                                                                <td>{{ $user->subcategory->subcategory_name }}</td>
+                                                                <td>{{ $user->price }}</td>
+                                                                <td> <img src="images/{{ $user->thumbnail }}" alt="" width="70"></td>
                                                                 <td>{{ $user->created_at !=null ? $user->created_at->diffForHumans():'N/A' }}</td>
                                                                 <td>{{ $user->updated_at !=null ? $user->updated_at->diffForHumans():'N/A' }}</td>
                                                                 <td>
@@ -63,7 +69,7 @@
                                                                     <a href="{{ url('subcategory-delete') }}/{{ $user->id }}"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a>
                                                                 </td>
                                                             </tr>
-                                                        @endforeach --}}
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -74,9 +80,9 @@
                         </div>
                     </div>
                 </div>
-                {{-- <div style="width: 25%">
-                    {{ $subcategory }}
-                </div> --}}
+                <div style="width: 25%">
+                    {{ $product }}
+                </div>
             </div>
         </div>
     </div>

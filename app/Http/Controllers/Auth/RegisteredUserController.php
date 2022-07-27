@@ -49,7 +49,6 @@ class RegisteredUserController extends Controller
             $image = time().'.'.$request->image->extension(),
             $request->image->move(public_path('image/'), $image),
             'image'=>$request->image,
-
         ]);
 
         event(new Registered($user));

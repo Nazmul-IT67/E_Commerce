@@ -43,7 +43,7 @@ Route::get('subcategory-sofd/{id}', [SubCategoryController::class, 'SubCategoryS
 
 /**-----Backend Products Routes----**/
 Route::get('product-add', [ProductController::class, 'ProductAdd'])->name('ProductAdd');
-Route::POST('product-post', [ProductController::class, 'ProductPOST'])->name('ProductPOST');
+Route::POST('product-post', [ProductController::class, 'ProductPost'])->name('ProductPost');
 Route::get('product-list', [ProductController::class, 'ProductList'])->name('ProductList');
 Route::get('product-trash', [ProductController::class, 'ProductTrash'])->name('ProductTrash');
 Route::get('sub-cat/{id}', [ProductController::class, 'SubCat'])->name('SubCat');

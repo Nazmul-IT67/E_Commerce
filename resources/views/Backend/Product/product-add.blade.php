@@ -17,7 +17,7 @@
 
                     <div class="x_content">
                         <br>
-                        <form action="{{ url('subcategory-post') }}" method="POST">
+                        <form action="{{ route('ProductPost') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="category_id">Category Name</label>
