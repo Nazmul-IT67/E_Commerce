@@ -81,9 +81,16 @@ class ProductController extends Controller
         return response()->json($sub_cat);
     }
 
-    function ProductEdit(){
+    function ProductEdit($id){
+        $product=Product::findOrfail($id);
         return view('Backend.Product.product-edit',[
             'categorys'=>Category::orderBy('category_name','asc')->get(),
+            'subcategorys'=>SubCategory::where('category_id', $product->category_id)->orderBy('subcategory_name','asc')->get(),
+            'product'=>$product,
         ]);
+    }
+
+    function ProductDelete($id){
+        return$id;
     }
 }

@@ -24,7 +24,11 @@
                                     <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
                                         <option value="">Category Name</option>
                                         @foreach ($categorys as $value)
-                                            <option value="{{ $value->id }}">{{ $value->category_name }}</option>
+                                            <option
+                                            @if ($product->category_id==$value->id)
+                                                selected
+                                            @endif
+                                            value="{{ $value->id }}">{{ $value->category_name }}</option>
                                         @endforeach
                                     </select>
                                     @error('category_id')
@@ -36,7 +40,17 @@
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="subcategory_id">SubCategory Name</label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control @error('subcategory_id') is-invalid @enderror" name="subcategory_id" id="subcategory_id">
+
+                                        @foreach ($subcategorys as $value)
+                                        <option
+                                        @if ($product->subcategory_id==$value->id)
+                                            selected
+                                        @endif
+                                        value="{{ $value->id }}">{{ $value->subcategory_name }}</option>
+                                        @endforeach
+
                                     </select>
+
                                     @error('subcategory_id')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -46,18 +60,8 @@
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="title">Product Name</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input class="form-control @error('title') is-invalid @enderror" type="text" id="title" name="title" value="{{ old('title') }}">
+                                    <input class="form-control @error('title') is-invalid @enderror" type="text" id="title" name="title" value="{{$product->title ?? old('title') }}">
                                     @error('title')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="slug">Product Permalink</label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <input class="form-control @error('slug') is-invalid @enderror" type="text" id="slug" name="slug" value="{{ old('slug') }}">
-                                    @error('slug')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -66,28 +70,8 @@
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="price">Product Price</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input class="form-control @error('price') is-invalid @enderror" type="text" id="price" name="price" value="{{ old('price') }}">
+                                    <input class="form-control @error('price') is-invalid @enderror" type="text" id="price" name="price" value="{{$product->price ?? old('price') }}">
                                     @error('price')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="summery">Product Summery</label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <textarea class="form-control @error('summery') is-invalid @enderror" type="text" id="summery" name="summery"></textarea>
-                                    @error('summery')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="description">Product Description</label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <textarea class="form-control @error('description') is-invalid @enderror" type="text" id="description" name="description"></textarea>
-                                    @error('description')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -96,11 +80,16 @@
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="thumbnail">Product Thumbnail</label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <input class="@error('thumbnail') is-invalid @enderror" type="file" id="thumbnail" name="thumbnail">
+                                    <input class="@error('thumbnail') is-invalid @enderror" type="file" id="thumbnail" name="thumbnail"  value="{{$product->thumbnail ?? old('thumbnail') }}" onchange="document.getElementById('image_id').src = window.URL.createObjectURL(this.files[0])">
                                     @error('thumbnail')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="thumbnail">Preview Thumbnail</label>
+                                <img id="image_id" class="img-fluid w-25" src="{{ asset('images/'.$product->thumbnail) }}" alt="">
                             </div>
 
                             <div class="item form-group">
