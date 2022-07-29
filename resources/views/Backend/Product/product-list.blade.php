@@ -56,7 +56,7 @@
                                                                 <td>{{ $user->category->category_name }}</td>
                                                                 <td>{{ Str::limit($user->summery, 20,) }}</td>
                                                                 <td>{{ $user->price }}</td>
-                                                                <td> <img src="images/{{ $user->thumbnail }}" alt="" width="70"></td>
+                                                                <td> <img src="{{ asset('Images/'.$user->created_at->format('Y/m/').$user->id.'/'.$user->thumbnail) }}" alt="" width="70"></td>
                                                                 <td>
                                                                     <a href=""><button class="btn btn-success">Active</button></a>
                                                                 </td>

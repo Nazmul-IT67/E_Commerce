@@ -22,8 +22,9 @@ class CreateProductsTable extends Migration
             $table->string('summery');
             $table->text('description');
             $table->string('price');
-            $table->string('thumbnail');
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

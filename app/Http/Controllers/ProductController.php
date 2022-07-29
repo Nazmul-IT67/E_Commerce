@@ -32,12 +32,12 @@ class ProductController extends Controller
         ]);
 
         $product=new Product;
-        if($request->hasFile('thumbnail')){
-            $image=$request->file('thumbnail');
-            $ext=$request->title.'.'.$image->getClientOriginalExtension();
-            Image::make($image)->save(public_path('Images/'.$ext));
-            $product->thumbnail=$ext;
-        }
+        // if($request->hasFile('thumbnail')){
+        //     $image=$request->file('thumbnail');
+        //     $ext=$request->title.'.'.$image->getClientOriginalExtension();
+        //     Image::make($image)->save(public_path('Images/'.$ext));
+        //     $product->thumbnail=$ext;
+        // }
         $product->title=$request->title;
         $product->slug=$request->slug;
         $product->category_id=$request->category_id;
@@ -47,22 +47,18 @@ class ProductController extends Controller
         $product->price=$request->price;
         $product->save();
 
-        // if($request->hasFile('thumbnail')){
-        //     $image=$request->file('thumbnail');
-        //     $ext=$request->title.'.'.$image->getClientOriginalExtension();
-        //     Image::make($image)->save(public_path('Images/'.$ext));
-        //     $product->thumbnail=$ext;
-        //     // $image=$request->file('thumbnail');
-        //     // $ext=$request->title.'.'.$image->getClientOriginalExtension();
-        //     // $new=Product::findOrFail($product->id);
-        //     // $path=public_path('Images/'.$new->created_at->format('Y/m/').$new->id.'/');
-        //     // File::makeDirectory($path, $mode=0777, true, true);
-        //     // Image::make($image)->save($path.$ext);
-        //     // $new->thumbnail=$ext;
-        //     // $new->save();
-        // }
-
-        return redirect('product-list')->with('success', 'SubCategory Add Successfull');
+        // Inserting the image in this way should keep the database nullable
+        if($request->hasFile('thumbnail')){
+            $image=$request->file('thumbnail');
+            $ext=$request->title.'.'.$image->getClientOriginalExtension();
+            $new=Product::findOrFail($product->id);
+            $path=public_path('Images/'.$new->created_at->format('Y/m/').$new->id.'/');
+            File::makeDirectory($path, $mode=0777, true, true);
+            Image::make($image)->save($path.$ext);
+            $new->thumbnail=$ext;
+            $new->save();
+        }
+        return redirect('product-list')->with('success', 'Product Add Successfull');
     }
 
     function ProductList(){
@@ -90,7 +86,35 @@ class ProductController extends Controller
         ]);
     }
 
+    function ProductUpdate(Request $request){
+        $request->validate([
+            'title'=>['required'],
+            'price'=>['required'],
+            'thumbnail'=>['required','image'],
+        ]);
+        $product=Product::findOrFail($request->product_id);
+        $product->title=$request->title;
+        if($request->hasFile('thumbnail')){
+            $image=$request->file('thumbnail');
+            $ext=$request->title.'.'.$image->getClientOriginalExtension();
+            $old=public_path('Images/'.$product->created_at->format('Y/m/').$product->id.'/'.$product->thumbnail);
+            if(file_exists($old)){
+                unlink($old);
+            }
+            $path=public_path('Images/'.$product->created_at->format('Y/m/').$product->id.'/');
+            File::makeDirectory($path, $mode=0777, true, true);
+            Image::make($image)->save($path . $ext);
+            $product->thumbnail=$ext;
+        }
+        $product->category_id=$request->category_id;
+        $product->subcategory_id=$request->subcategory_id;
+        $product->price=$request->price;
+        $product->save();
+        return redirect('product-list')->with('success', 'Product Update Successfull');
+    }
+
     function ProductDelete($id){
-        return$id;
+        Product::findOrfail($id)->delete();
+        return redirect('product-list')->with('success', 'Product Delete Successfull');
     }
 }

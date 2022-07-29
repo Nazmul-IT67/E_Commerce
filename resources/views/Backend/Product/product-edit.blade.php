@@ -16,8 +16,9 @@
 
                     <div class="x_content">
                         <br>
-                        <form action="{{ route('ProductPost') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('ProductUpdate') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="category_id">Category Name</label>
                                 <div class="col-md-6 col-sm-6 ">
@@ -89,7 +90,7 @@
 
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="thumbnail">Preview Thumbnail</label>
-                                <img id="image_id" class="img-fluid w-25" src="{{ asset('images/'.$product->thumbnail) }}" alt="">
+                                <img id="image_id" class="img-fluid w-25" src="{{asset('Images/'.$product->created_at->format('Y/m/').$product->id.'/'.$product->thumbnail)}}" alt="" style="border-radius: 10px">
                             </div>
 
                             <div class="item form-group">
