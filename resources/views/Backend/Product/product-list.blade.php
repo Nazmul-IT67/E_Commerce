@@ -39,10 +39,10 @@
                                                             <th style="width: 150px">Product Title</th>
                                                             <th>Slyg</th>
                                                             <th>Category</th>
+                                                            <th>SubCategory</th>
                                                             <th>Summery</th>
                                                             <th>Price</th>
                                                             <th>Thumbnail</th>
-                                                            <th>Status</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -54,12 +54,10 @@
                                                                 <td>{{ $user->title }}</td>
                                                                 <td>{{ $user->slug }}</td>
                                                                 <td>{{ $user->category->category_name }}</td>
+                                                                <td>{{ $user->subcategory->subcategory_name }}</td>
                                                                 <td>{{ Str::limit($user->summery, 20,) }}</td>
                                                                 <td>{{ $user->price }}</td>
                                                                 <td> <img src="{{ asset('Images/'.$user->created_at->format('Y/m/').$user->id.'/'.$user->thumbnail) }}" alt="" width="70"></td>
-                                                                <td>
-                                                                    <a href=""><button class="btn btn-success">Active</button></a>
-                                                                </td>
                                                                 <td>
                                                                     <a href="{{ route('ProductEdit',$user->id) }}"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
                                                                     <a href="{{ route('ProductDelete',$user->id) }}"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a>

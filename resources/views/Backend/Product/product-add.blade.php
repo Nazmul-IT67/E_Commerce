@@ -20,6 +20,20 @@
                         <form action="{{ route('ProductPost') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="brand_name">Brand Name</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select class="form-control @error('brand_name') is-invalid @enderror" name="brand_id" id="brand_name">
+                                        <option value="">Brand Name</option>
+                                        @foreach ($brands as $brand)
+                                            <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('brand_name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="category_id">Category Name</label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">
@@ -99,6 +113,16 @@
                                 <div class="col-md-6 col-sm-6 ">
                                     <input class="@error('thumbnail') is-invalid @enderror" type="file" id="thumbnail" name="thumbnail">
                                     @error('thumbnail')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="product_image">Product Gallery</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <input multiple class="@error('product_image') is-invalid @enderror" type="file" id="product_image" name="image[]">
+                                    @error('product_image')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>

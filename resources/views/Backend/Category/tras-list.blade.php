@@ -37,7 +37,6 @@
                                                             <th>Created_AT</th>
                                                             <th>Updated_AT</th>
                                                             <th>Deleted_AT</th>
-                                                            <th>Status</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -50,9 +49,6 @@
                                                                 <td>{{ $user->created_at !=null ? $user->created_at->diffForHumans():'N/A' }}</td>
                                                                 <td>{{ $user->updated_at !=null ? $user->updated_at->diffForHumans():'N/A' }}</td>
                                                                 <td>{{ $user->updated_at !=null ? $user->deleted_at->diffForHumans():'N/A' }}</td>
-                                                                <td>
-                                                                    <a href=""><button class="btn btn-success">Active</button></a>
-                                                                </td>
                                                                 <td>
                                                                     <a href="{{ url('category-reset') }}/{{ $user->id }}"><button class="btn btn-primary"><i class="fa fa-recycle"></i></button></a>
                                                                     <a href="{{ url('category-sofd') }}/{{ $user->id }}"><button class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a>

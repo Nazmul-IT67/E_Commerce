@@ -20,6 +20,24 @@
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <div class="item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="brand_name">Brand Name</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select class="form-control @error('brand_name') is-invalid @enderror" name="brand_id" id="brand_name">
+                                        <option value="">Brand Name</option>
+                                        @foreach ($brands as $value)
+                                            <option
+                                            @if ($product->brand_id==$value->id)
+                                                selected
+                                            @endif
+                                            value="{{ $value->id }}">{{ $value->brand_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('brand_name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="category_id">Category Name</label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category_id">

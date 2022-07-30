@@ -41,7 +41,6 @@
                                                             <th>Category</th>
                                                             <th>Created_AT</th>
                                                             <th>Updated_AT</th>
-                                                            <th>Status</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -55,9 +54,6 @@
                                                                 <td>{{ $user->category->category_name }}</td>
                                                                 <td>{{ $user->created_at !=null ? $user->created_at->diffForHumans():'N/A' }}</td>
                                                                 <td>{{ $user->updated_at !=null ? $user->updated_at->diffForHumans():'N/A' }}</td>
-                                                                <td>
-                                                                    <a href=""><button class="btn btn-success">Active</button></a>
-                                                                </td>
                                                                 <td>
                                                                     <a href="{{ url('subcategory-edit') }}/{{ $user->id }}"><button class="btn btn-primary"><i class="fa fa-edit"></i></button></a>
                                                                     <a href="{{ url('subcategory-delete') }}/{{ $user->id }}"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></a>

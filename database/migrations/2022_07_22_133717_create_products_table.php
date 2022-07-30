@@ -19,9 +19,10 @@ class CreateProductsTable extends Migration
             $table->string('slug')->uniqid();
             $table->foreignId('category_id');
             $table->foreignId('subcategory_id');
+            $table->foreignId('brand_id');
             $table->string('summery');
             $table->text('description');
-            $table->string('price');
+            $table->string('price')->nullable();
             $table->string('thumbnail')->nullable();
             $table->timestamps();
             $table->softDeletes();

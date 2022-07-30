@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\Brand;
+use App\Models\ProductGallery;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
@@ -18,6 +20,7 @@ class ProductController extends Controller
         return view('Backend.Product.product-add',[
             'last'=>$last,
             'categorys'=>Category::orderBy('category_name','asc')->get(),
+            'brands'=>Brand::orderBy('brand_name','asc')->get(),
         ]);
     }
 
@@ -42,6 +45,7 @@ class ProductController extends Controller
         $product->slug=$request->slug;
         $product->category_id=$request->category_id;
         $product->subcategory_id=$request->subcategory_id;
+        $product->brand_id=$request->brand_id;
         $product->summery=$request->summery;
         $product->description=$request->description;
         $product->price=$request->price;
@@ -57,6 +61,20 @@ class ProductController extends Controller
             Image::make($image)->save($path.$ext);
             $new->thumbnail=$ext;
             $new->save();
+        }
+        // Miltiple Images
+        if($request->hasFile('image')){
+            $images=$request->file('image');
+            foreach($images as $image){
+                $img_ext=$request->title.Str::random(3).'.'.$image->getClientOriginalExtension();
+                $path=public_path('Images/Gallerys/'.$product->created_at->format('Y/m/').$product->id.'/');
+                File::makeDirectory($path, $mode=0777, true, true);
+                Image::make($image)->save($path.$img_ext);
+                $img=new ProductGallery;
+                $img->product_gallery=$img_ext;
+                $img->product_id=$product->id;
+                $img->save();
+            }
         }
         return redirect('product-list')->with('success', 'Product Add Successfull');
     }
@@ -83,6 +101,7 @@ class ProductController extends Controller
             'categorys'=>Category::orderBy('category_name','asc')->get(),
             'subcategorys'=>SubCategory::where('category_id', $product->category_id)->orderBy('subcategory_name','asc')->get(),
             'product'=>$product,
+            'brands'=>Brand::orderBy('brand_name','asc')->get(),
         ]);
     }
 
@@ -108,6 +127,7 @@ class ProductController extends Controller
         }
         $product->category_id=$request->category_id;
         $product->subcategory_id=$request->subcategory_id;
+        $product->brand_id=$request->brand_id;
         $product->price=$request->price;
         $product->save();
         return redirect('product-list')->with('success', 'Product Update Successfull');
