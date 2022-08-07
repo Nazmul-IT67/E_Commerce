@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Brand;
+use App\Models\Color;
+use App\Models\Size;
 use App\Models\ProductGallery;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
@@ -159,4 +161,48 @@ class ProductController extends Controller
     }
 
 
+    //-----Product Brands----//
+    function AddBrand(){
+        $last_value=collect(request()->segments())->last();
+        $last=Str::of($last_value)->replace('-','');
+        return view('Backend.Brand.brand',[
+            'last'=>$last,
+        ]);
+    }
+    function BrandPost(Request $request){
+        $brand=New Brand;
+        $brand->brand_name=$request->brand_name;
+        $brand->save();
+        return back();
+    }
+
+
+    function AddColor(){
+        $last_value=collect(request()->segments())->last();
+        $last=Str::of($last_value)->replace('-','');
+        return view('Backend.Brand.color',[
+            'last'=>$last,
+        ]);
+    }
+    function ColorPost(Request $request){
+        $color=New Color;
+        $color->color_name=$request->color_name;
+        $color->save();
+        return back();
+    }
+
+
+    function AddSize(){
+        $last_value=collect(request()->segments())->last();
+        $last=Str::of($last_value)->replace('-','');
+        return view('Backend.Brand.size',[
+            'last'=>$last,
+        ]);
+    }
+    function SizePost(Request $request){
+        $size=New Size;
+        $size->size_name=$request->size_name;
+        $size->save();
+        return back();
+    }
 }

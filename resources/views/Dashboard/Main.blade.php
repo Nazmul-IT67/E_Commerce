@@ -84,6 +84,14 @@
                                     </ul>
                                 </li>
 
+                                <li><a><i class="fa fa-birthday-cake" aria-hidden="true"></i>Product Brand<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('AddBrand') }}">Add Brand</a></li>
+                                        <li><a href="{{ route('AddColor') }}">Add Color</a></li>
+                                        <li><a href="{{ route('AddSize') }}">Add Size</a></li>
+                                    </ul>
+                                </li>
+
                                 <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
