@@ -89,6 +89,16 @@ class ProductController extends Controller
         ]);
     }
 
+    function ProductTrash(){
+        $last_value=collect(request()->segments())->last();
+        $last=Str::of($last_value)->replace('-','');
+        return view('Backend.Product.product-trash',[
+            'trashProduct'=>Product::onlyTrashed()->paginate(10),
+            'p_count'=>$t_count=Product::onlyTrashed()->count(),
+            'last'=>$last,
+        ]);
+    }
+
     // Product Subcategoey
     function SubCat($id){
         $sub_cat=SubCategory::where('category_id', $id)->get();
@@ -137,4 +147,16 @@ class ProductController extends Controller
         Product::findOrfail($id)->delete();
         return redirect('product-list')->with('success', 'Product Delete Successfull');
     }
+
+    function ProductRestor($id){
+        Product::onlyTrashed()->findOrfail($id)->restore();
+        return redirect('product-list')->with('success', 'Product Reset Successfull');
+    }
+
+    function ProductSoft($id){
+        Product::onlyTrashed()->findOrfail($id)->forceDelete();
+        return redirect('product-list')->with('success', 'Product Delete Successfull');
+    }
+
+
 }

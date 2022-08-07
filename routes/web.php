@@ -50,3 +50,5 @@ Route::get('sub-cat/{id}', [ProductController::class, 'SubCat'])->name('SubCat')
 Route::get('product-edit/{id}', [ProductController::class, 'ProductEdit'])->name('ProductEdit');
 Route::POST('product-update', [ProductController::class, 'ProductUpdate'])->name('ProductUpdate');
 Route::get('product-delete/{id}', [ProductController::class, 'ProductDelete'])->name('ProductDelete');
+Route::get('product-restor/{id}', [ProductController::class, 'ProductRestor'])->name('ProductRestor');
+Route::get('product-soft/{id}', [ProductController::class, 'ProductSoft'])->name('ProductSoft');
