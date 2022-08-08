@@ -13,7 +13,7 @@ class FrontendController extends Controller
 
     function SingleProduct($slug){
         return view('Frontend.Product.single',[
-            'product'=>Product::where('slug', $slug)->first(),
+            'products'=>Product::where('slug', $slug)->first(),
         ]);
     }
 }

@@ -1,4 +1,7 @@
 @extends('Frontend.master')
+@section('title')
+    {{ $products->title }}
+@endsection
 @section('content')
     <div class="breadcumb-area bg-img-4 ptb-100">
         <div class="container">
@@ -21,53 +24,37 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="product-single-img">
+
                         <div class="product-active owl-carousel">
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/1.jpg') }}" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/2.jpg') }}" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/3.jpg') }}" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/4.jpg') }}" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/5.jpg') }}" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/6.jpg') }}" alt="">
-                            </div>
+                            {{-- <div class="item">
+                                <img src="{{ asset('Images/' . $products->created_at->format('Y/m/') . $products->id . '/' . $products->thumbnail) }}" alt="">
+                            </div> --}}
+                            @foreach ($products->ProductGallery as $gallery)
+                                <div class="item">
+                                    <img src="{{ asset('Images/Gallerys/' . $gallery->created_at->format('Y/m/') . $gallery->product_id . '/' . $gallery->product_gallery) }}" alt="">
+                                </div>
+                            @endforeach
                         </div>
+
                         <div class="product-thumbnil-active  owl-carousel">
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/1.jpg') }}" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/2.jpg') }}" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/3.jpg') }}" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/4.jpg') }}" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/5.jpg') }}" alt="">
-                            </div>
-                            <div class="item">
-                                <img src="{{ asset('front/assets/images/product/product-details/6.jpg') }}" alt="">
-                            </div>
+                            {{-- <div class="item">
+                                <img src="{{ asset('Images/' . $products->created_at->format('Y/m/') . $products->id . '/' . $products->thumbnail) }}" alt="">
+                            </div> --}}
+                            @foreach ($products->ProductGallery as $gallery)
+                                <div class="item">
+                                    <img src="{{ asset('Images/Gallerys/' . $gallery->created_at->format('Y/m/') . $gallery->product_id . '/' . $gallery->product_gallery) }}" alt="">
+                                </div>
+                            @endforeach
                         </div>
+
                     </div>
                 </div>
+
                 <div class="col-lg-6">
                     <div class="product-single-content">
-                        <h3>Nature Honey</h3>
+                        <h3>{{ $products->title }}</h3>
                         <div class="rating-wrap fix">
-                            <span class="pull-left">$219.56</span>
+                            <span class="pull-left">${{ $products->price }}</span>
                             <ul class="rating pull-right">
                                 <li><i class="fa fa-star"></i></li>
                                 <li><i class="fa fa-star"></i></li>
@@ -77,9 +64,7 @@
                                 <li>(05 Customar Review)</li>
                             </ul>
                         </div>
-                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-                            demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot
-                            foresee the pain and trouble that are bound to ensue; and equal blame belongs</p>
+                        <p>{{ $products->description }}</p>
                         <ul class="input-style">
                             <li class="quantity cart-plus-minus">
                                 <input type="text" value="1" />
@@ -88,7 +73,7 @@
                         </ul>
                         <ul class="cetagory">
                             <li>Categories:</li>
-                            <li><a href="#">Honey</a></li>
+                            <li><a href="#">{{ $products->category->category_name }}</a></li>
                         </ul>
                         <ul class="socil-icon">
                             <li>Share :</li>
@@ -115,33 +100,30 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="description">
                             <div class="description-wrap">
-                                <p>we denounce with righteous indignation and dislike men who are so beguiled and
-                                    demoralized by the charms of pleasure of the moment, so blinded by desire, that they
-                                    cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to
-                                    those who fail in their duty through weakness of will, which is the same as saying
-                                    through shrinking from toil and pain. </p>
-                                <p>These cases are perfectly simple and easy to distinguish. In a free hour, when our power
-                                    of choice is untrammelled and when nothing prevents our being able to do what we like
-                                    best, every pleasure is to be welcomed and every pain avoided. </p>
+                                <p>{{ $products->description }}
                             </div>
                         </div>
                         <div class="tab-pane" id="tag">
                             <div class="faq-wrap" id="accordion">
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
-                                        <h5><button data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">General Inquiries ?</button> </h5>
+                                        <h5><button data-toggle="collapse" data-target="#collapseOne"
+                                                aria-expanded="true" aria-controls="collapseOne">General Inquiries
+                                                ?</button> </h5>
                                     </div>
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
                                         data-parent="#accordion">
                                         <div class="card-body">
                                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
-                                            brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor
+                                            brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor,
                                             sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
                                             shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
                                             cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                            Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
+                                            Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                                            nesciunt
                                             you probably haven't heard of them accusamus labore sustainable VHS.
                                         </div>
                                     </div>
@@ -156,12 +138,15 @@
                                         data-parent="#accordion">
                                         <div class="card-body">
                                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
-                                            brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor
+                                            brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor,
                                             sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
                                             shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
                                             cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                            Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
+                                            Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                                            nesciunt
                                             you probably haven't heard of them accusamus labore sustainable VHS.
                                         </div>
                                     </div>
@@ -176,12 +161,15 @@
                                         data-parent="#accordion">
                                         <div class="card-body">
                                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
-                                            brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor
+                                            brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor,
                                             sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
                                             shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
                                             cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                            Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
+                                            Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                                            nesciunt
                                             you probably haven't heard of them accusamus labore sustainable VHS.
                                         </div>
                                     </div>
@@ -196,12 +184,15 @@
                                         data-parent="#accordion">
                                         <div class="card-body">
                                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
-                                            brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor
+                                            brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor,
                                             sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
                                             shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
                                             cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                            Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
+                                            Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                                            nesciunt
                                             you probably haven't heard of them accusamus labore sustainable VHS.
                                         </div>
                                     </div>
@@ -216,12 +207,15 @@
                                         data-parent="#accordion">
                                         <div class="card-body">
                                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
-                                            brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                            richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard
+                                            dolor
+                                            brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                                            tempor,
                                             sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
                                             shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
                                             cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-                                            Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
+                                            Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                                            nesciunt
                                             you probably haven't heard of them accusamus labore sustainable VHS.
                                         </div>
                                     </div>
@@ -239,7 +233,8 @@
                                             <h3><a href="#">GERALD BARNES</a></h3>
                                             <span>27 Jun, 2019 at 2:30pm</span>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan
-                                                egestas elese ifend. Phasellus a felis at estei to bibendum feugiat ut eget
+                                                egestas elese ifend. Phasellus a felis at estei to bibendum feugiat ut
+                                                eget
                                                 eni Praesent et messages in con sectetur posuere dolor non.</p>
                                             <ul class="rating">
                                                 <li><i class="fa fa-star"></i></li>
@@ -258,7 +253,8 @@
                                             <h3><a href="#">Olive Oil</a></h3>
                                             <span>15 may, 2019 at 2:30pm</span>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan
-                                                egestas elese ifend. Phasellus a felis at estei to bibendum feugiat ut eget
+                                                egestas elese ifend. Phasellus a felis at estei to bibendum feugiat ut
+                                                eget
                                                 eni Praesent et messages in con sectetur posuere dolor non.</p>
                                             <ul class="rating">
                                                 <li><i class="fa fa-star"></i></li>
@@ -277,7 +273,8 @@
                                             <h3><a href="#">Nature Honey</a></h3>
                                             <span>14 janu, 2019 at 2:30pm</span>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan
-                                                egestas elese ifend. Phasellus a felis at estei to bibendum feugiat ut eget
+                                                egestas elese ifend. Phasellus a felis at estei to bibendum feugiat ut
+                                                eget
                                                 eni Praesent et messages in con sectetur posuere dolor non.</p>
                                             <ul class="rating">
                                                 <li><i class="fa fa-star"></i></li>
