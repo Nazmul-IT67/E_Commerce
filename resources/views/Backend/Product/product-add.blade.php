@@ -33,6 +33,7 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="category_id">Category Name</label>
                                 <div class="col-md-6 col-sm-6 ">
@@ -47,6 +48,7 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="subcategory_id">SubCategory Name</label>
                                 <div class="col-md-6 col-sm-6 ">

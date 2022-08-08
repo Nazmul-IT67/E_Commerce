@@ -155,8 +155,8 @@
             <!-- /page content -->
 
             <!-- footer content -->
-            <footer style="background-color: rgb(33, 32, 41)">
-                <div class="pull-right">
+            <footer style="background-color: rgb(19, 18, 20)">
+                <div class="text-center">
                     Gentelella - Bootstrap Admin Template by
                 </div>
                 <div class="clearfix"></div>
