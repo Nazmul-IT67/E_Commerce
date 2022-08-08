@@ -10,4 +10,10 @@ class FrontendController extends Controller
             'products'=>Product::all(),
         ]);
     }
+
+    function SingleProduct($slug){
+        return view('Frontend.Product.single',[
+            'product'=>Product::where('slug', $slug)->first(),
+        ]);
+    }
 }

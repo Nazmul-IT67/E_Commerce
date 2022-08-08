@@ -20,6 +20,7 @@ require __DIR__.'/auth.php';
 /**********Dashboard Routes*************/
 Route::get('dashboard', [DashboardController::class, 'Dashboard'])->name('Dashboard');
 Route::get('/', [FrontendController::class, 'Frontend'])->name('Frontend');
+Route::get('single/{slug}', [FrontendController::class, 'SingleProduct'])->name('SingleProduct');
 
 /**-----Backend Category Routes----**/
 Route::get('category-add', [CategoryController::class, 'AddCategory'])->name('AddCategory');

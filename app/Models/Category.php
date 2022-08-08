@@ -11,7 +11,7 @@ class Category extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable=[
-        'subcategory_name'
+        'category_name'
     ];
 
     function subcategory(){

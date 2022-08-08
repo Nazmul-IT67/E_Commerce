@@ -71,7 +71,8 @@
                         @foreach ($products as $product)
                             <div class="featured-wrap">
                                 <div class="featured-img">
-                                    <img src="{{ asset('Images/'.$product->created_at->format('Y/m/').$product->id.'/'.$product->thumbnail) }}" style="height: 250px" alt="">
+                                    <img src="{{ asset('Images/' . $product->created_at->format('Y/m/') . $product->id . '/' . $product->thumbnail) }}"
+                                        style="height: 250px" alt="">
                                     <div class="featured-content">
                                         <a href="#">{{ $product->title }}</a>
                                     </div>
@@ -124,7 +125,7 @@
                             <img src="front/assets/images/product/1.jpg" alt="">
                             <div class="product-icon flex-style">
                                 <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
+                                    <li><a data-toggle="modal" data-target="#exampleModalCenter{{ $product->id }}"
                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                     <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
                                     <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
@@ -152,7 +153,7 @@
                             <img src="front/assets/images/product/2.jpg" alt="">
                             <div class="product-icon flex-style">
                                 <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
+                                    <li><a data-toggle="modal" data-target="#exampleModalCenter{{ $product->id }}"
                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                     <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
                                     <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
@@ -180,7 +181,7 @@
                             <img src="front/assets/images/product/3.jpg" alt="">
                             <div class="product-icon flex-style">
                                 <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
+                                    <li><a data-toggle="modal" data-target="#exampleModalCenter{{ $product->id }}"
                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                     <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
                                     <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
@@ -208,7 +209,7 @@
                             <img src="front/assets/images/product/4.jpg" alt="">
                             <div class="product-icon flex-style">
                                 <ul>
-                                    <li><a data-toggle="modal" data-target="#exampleModalCenter"
+                                    <li><a data-toggle="modal" data-target="#exampleModalCenter{{ $product->id }}"
                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                     <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
                                     <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
@@ -252,10 +253,11 @@
                         <div class="product-wrap">
                             <div class="product-img">
                                 <span>Sale</span>
-                                <img src="{{ asset('Images/'.$product->created_at->format('Y/m/').$product->id.'/'.$product->thumbnail) }}" style="height: 225px" alt="">
+                                <img src="{{ asset('Images/' . $product->created_at->format('Y/m/') . $product->id . '/' . $product->thumbnail) }}"
+                                    style="height: 225px" alt="">
                                 <div class="product-icon flex-style">
                                     <ul>
-                                        <li><a data-toggle="modal" data-target="#exampleModalCenter"
+                                        <li><a data-toggle="modal" data-target="#exampleModalCenter{{ $product->id }}"
                                                 href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                         <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
@@ -263,7 +265,7 @@
                                 </div>
                             </div>
                             <div class="product-content">
-                                <h3><a href="single-product.html">{{ $product->title }}</a></h3>
+                                <h3><a href="{{ route('SingleProduct', $product->slug) }}">{{ $product->title }}</a></h3>
                                 <p class="pull-left">${{ $product->price }}
 
                                 </p>
@@ -340,23 +342,56 @@
         </div>
     </div>
     <!-- testmonial-area end -->
-    <!-- start social-newsletter-section -->
-    <section class="social-newsletter-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="newsletter text-center">
-                        <h3>Subscribe Newsletter</h3>
-                        <div class="newsletter-form">
-                            <form>
-                                <input type="text" class="form-control" placeholder="Enter Your Email Address...">
-                                <button type="submit"><i class="fa fa-send"></i></button>
-                            </form>
+
+    <!-- Modal area start -->
+    @foreach ($products as $product)
+        <div class="modal fade" id="exampleModalCenter{{ $product->id }}" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-body d-flex">
+                        <div class="product-single-img w-50">
+                            <img src="{{ asset('Images/' . $product->created_at->format('Y/m/') . $product->id . '/' . $product->thumbnail) }}" alt="">
+                        </div>
+                        <div class="product-single-content w-50">
+                            <h3>{{ $product->title }}</h3>
+                            <div class="rating-wrap fix">
+                                <span class="pull-left">${{ $product->price }}</span>
+                                <ul class="rating pull-right">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li>(05 Customar Review)</li>
+                                </ul>
+                            </div>
+                            <p>{{ $product->description }}</p>
+                            <ul class="input-style">
+                                <li class="quantity cart-plus-minus">
+                                    <input type="text" value="1" />
+                                </li>
+                                <li><a href="cart.html">Add to Cart</a></li>
+                            </ul>
+                            <ul class="cetagory">
+                                <li>Category: </li>
+                                <li><a href="#">{{ $product->category->category_name }}</a></li>
+                            </ul>
+                            <ul class="socil-icon">
+                                <li>Share :</li>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- end container -->
-    </section>
+    @endforeach
+    <!-- Modal area start -->
 @endsection
