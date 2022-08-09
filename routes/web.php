@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +17,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 require __DIR__.'/auth.php';
-
-/**********Dashboard Routes*************/
+/*
+|--------------------------------------------------------------------------
+| Dashboard Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('dashboard', [DashboardController::class, 'Dashboard'])->name('Dashboard');
+/*
+|--------------------------------------------------------------------------
+| Frontend Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('/', [FrontendController::class, 'Frontend'])->name('Frontend');
 Route::get('single/{slug}', [FrontendController::class, 'SingleProduct'])->name('SingleProduct');
-
-/**-----Backend Category Routes----**/
+Route::get('shop', [FrontendController::class, 'ShopPage'])->name('ShopPage');
+/*
+|--------------------------------------------------------------------------
+| Category Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('category-add', [CategoryController::class, 'AddCategory'])->name('AddCategory');
 Route::POST('category-post', [CategoryController::class, 'CategoryPost'])->name('CategoryPost');
 Route::get('category-list', [CategoryController::class, 'CategoryList'])->name('CategoryList');
@@ -32,8 +45,11 @@ Route::get('trash-list', [CategoryController::class, 'TrashList'])->name('TrashL
 Route::POST('category-update', [CategoryController::class, 'CategoryUpdate'])->name('CategoryUpdate');
 Route::get('category-reset/{id}', [CategoryController::class, 'CategoryReset'])->name('CategoryReset');
 Route::get('category-sofd/{id}', [CategoryController::class, 'CategorySofd'])->name('CategorySofd');
-
-/**-----Backend Sub Category Routes----**/
+/*
+|--------------------------------------------------------------------------
+| Sub-Category Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('subcategory-add', [SubCategoryController::class, 'SubCategoryAdd'])->name('SubCategoryAdd');
 Route::POST('subcategory-post', [SubCategoryController::class, 'SubCategoryPost'])->name('SubCategoryPost');
 Route::get('subcategory-list', [SubCategoryController::class, 'SubCategoryList'])->name('SubCategoryList');
@@ -43,8 +59,11 @@ Route::POST('subcategory-update', [SubCategoryController::class, 'SubCategoryUpd
 Route::get('subcategory-delete/{id}', [SubCategoryController::class, 'SubCategoryDelete'])->name('SubCategoryDelete');
 Route::get('subcategory-reset/{id}', [SubCategoryController::class, 'SubCategoryReset'])->name('SubCategoryReset');
 Route::get('subcategory-sofd/{id}', [SubCategoryController::class, 'SubCategorySofd'])->name('SubCategorySofd');
-
-/**-----Backend Products Routes----**/
+/*
+|--------------------------------------------------------------------------
+| Products Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('product-add', [ProductController::class, 'ProductAdd'])->name('ProductAdd');
 Route::POST('product-post', [ProductController::class, 'ProductPost'])->name('ProductPost');
 Route::get('product-list', [ProductController::class, 'ProductList'])->name('ProductList');
@@ -55,10 +74,15 @@ Route::POST('product-update', [ProductController::class, 'ProductUpdate'])->name
 Route::get('product-delete/{id}', [ProductController::class, 'ProductDelete'])->name('ProductDelete');
 Route::get('product-restor/{id}', [ProductController::class, 'ProductRestor'])->name('ProductRestor');
 Route::get('product-soft/{id}', [ProductController::class, 'ProductSoft'])->name('ProductSoft');
-
 Route::get('brand', [ProductController::class, 'AddBrand'])->name('AddBrand');
 Route::get('color', [ProductController::class, 'AddColor'])->name('AddColor');
 Route::get('size', [ProductController::class, 'AddSize'])->name('AddSize');
 Route::POST('brand', [ProductController::class, 'BrandPost'])->name('BrandPost');
 Route::POST('color', [ProductController::class, 'ColorPost'])->name('ColorPost');
 Route::POST('size', [ProductController::class, 'SizePost'])->name('SizePost');
+/*
+|--------------------------------------------------------------------------
+| Cart Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('single/cart/{slug}',[CartController::class, 'SingleCart'])->name('SingleCart');

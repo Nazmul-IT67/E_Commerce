@@ -60,8 +60,8 @@
                 <div class="row">
                     <div class="col-md-6 col-12">
                         <ul class="d-flex header-contact">
-                            <li><i class="fa fa-phone"></i> +01 123 456 789</li>
-                            <li><i class="fa fa-envelope"></i> youremail@gmail.com</li>
+                            <li><i class="fa fa-phone"></i> +8801940475267</li>
+                            <li><i class="fa fa-envelope"></i> nazmulns8989@gmail.com</li>
                         </ul>
                     </div>
                     <div class="col-md-6 col-12">
@@ -95,13 +95,14 @@
                     <div class="col-lg-7 d-none d-lg-block">
                         <nav class="mainmenu">
                             <ul class="d-flex">
-                                <li class="active"><a href="{{ route('Frontend') }}">Home</a></li>
-                                <li><a href="about.html">About</a></li>
+                                <li class="@yield('home')"><a href="{{ route('Frontend') }}">Home</a></li>
+                                <li class="@yield('about')"><a href="about.html">About</a></li>
+                                <li class="@yield('shop')"><a href="{{ route('ShopPage') }}">Shop</a></li>
                                 <li>
                                     <a href="javascript:void(0);">Shop <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown_style">
                                         <li><a href="shop.html">Shop Page</a></li>
-                                        <li><a href="single-product.html">Product Details</a></li>
+                                        <li><a href="#">Product Details</a></li>
                                         <li><a href="cart.html">Shopping cart</a></li>
                                         <li><a href="checkout.html">Checkout</a></li>
                                         <li><a href="wishlist.html">Wishlist</a></li>

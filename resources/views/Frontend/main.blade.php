@@ -1,4 +1,7 @@
 @extends('Frontend.master')
+@section('home')
+    active
+@endsection
 @section('content')
     <div class="slider-area">
         <div class="swiper-container">
@@ -242,7 +245,7 @@
                 <div class="col-12">
                     <div class="section-title">
                         <h2>Our Latest Product</h2>
-                        <img src="front/assets/images/section-title.png" alt="">
+                        <img src="{{ asset('front/assets/images/section-title.png') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -260,7 +263,7 @@
                                         <li><a data-toggle="modal" data-target="#exampleModalCenter{{ $product->id }}"
                                                 href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                         <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                        <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
+                                        <li><a href="{{ route('SingleCart', $product->slug) }}"><i class="fa fa-shopping-bag"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -279,6 +282,58 @@
                             </div>
                         </div>
                     </li>
+                    <!-- Modal area start -->
+                    @foreach ($products as $product)
+                        <div class="modal fade" id="exampleModalCenter{{ $product->id }}" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <div class="modal-body d-flex">
+                                        <div class="product-single-img w-50">
+                                            <img src="{{ asset('Images/' . $product->created_at->format('Y/m/') . $product->id . '/' . $product->thumbnail) }}"
+                                                alt="">
+                                        </div>
+                                        <div class="product-single-content w-50">
+                                            <h3>{{ $product->title }}</h3>
+                                            <div class="rating-wrap fix">
+                                                <span class="pull-left">${{ $product->price }}</span>
+                                                <ul class="rating pull-right">
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li><i class="fa fa-star"></i></li>
+                                                    <li>(05 Customar Review)</li>
+                                                </ul>
+                                            </div>
+                                            <p>{{ $product->description }}</p>
+                                            <ul class="input-style">
+                                                <li class="quantity cart-plus-minus">
+                                                    <input type="text" value="1" />
+                                                </li>
+                                                <li><a href="cart.html">Add to Cart</a></li>
+                                            </ul>
+                                            <ul class="cetagory">
+                                                <li>Category: </li>
+                                                <li><a href="#">{{ $product->category->category_name }}</a></li>
+                                            </ul>
+                                            <ul class="socil-icon">
+                                                <li>Share :</li>
+                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    <!-- Modal area start -->
                 @endforeach
                 <li class="col-12 text-center">
                     <a class="loadmore-btn" href="javascript:void(0);">Load More</a>
@@ -342,56 +397,4 @@
         </div>
     </div>
     <!-- testmonial-area end -->
-
-    <!-- Modal area start -->
-    @foreach ($products as $product)
-        <div class="modal fade" id="exampleModalCenter{{ $product->id }}" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="modal-body d-flex">
-                        <div class="product-single-img w-50">
-                            <img src="{{ asset('Images/' . $product->created_at->format('Y/m/') . $product->id . '/' . $product->thumbnail) }}" alt="">
-                        </div>
-                        <div class="product-single-content w-50">
-                            <h3>{{ $product->title }}</h3>
-                            <div class="rating-wrap fix">
-                                <span class="pull-left">${{ $product->price }}</span>
-                                <ul class="rating pull-right">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li>(05 Customar Review)</li>
-                                </ul>
-                            </div>
-                            <p>{{ $product->description }}</p>
-                            <ul class="input-style">
-                                <li class="quantity cart-plus-minus">
-                                    <input type="text" value="1" />
-                                </li>
-                                <li><a href="cart.html">Add to Cart</a></li>
-                            </ul>
-                            <ul class="cetagory">
-                                <li>Category: </li>
-                                <li><a href="#">{{ $product->category->category_name }}</a></li>
-                            </ul>
-                            <ul class="socil-icon">
-                                <li>Share :</li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
-    <!-- Modal area start -->
 @endsection

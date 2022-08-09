@@ -10,7 +10,7 @@
                     <div class="breadcumb-wrap text-center">
                         <h2>Shop Page</h2>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('Frontend') }}">Home</a></li>
                             <li><span>Shop</span></li>
                         </ul>
                     </div>
