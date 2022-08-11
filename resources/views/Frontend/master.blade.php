@@ -98,6 +98,7 @@
                                 <li class="@yield('home')"><a href="{{ route('Frontend') }}">Home</a></li>
                                 <li class="@yield('about')"><a href="about.html">About</a></li>
                                 <li class="@yield('shop')"><a href="{{ route('ShopPage') }}">Shop</a></li>
+                                <li class="@yield('cart')"><a href="{{ route('CartProduct') }}">Cart</a></li>
                                 <li>
                                     <a href="javascript:void(0);">Shop <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown_style">

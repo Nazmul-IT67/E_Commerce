@@ -86,3 +86,4 @@ Route::POST('size', [ProductController::class, 'SizePost'])->name('SizePost');
 |--------------------------------------------------------------------------
 */
 Route::get('single/cart/{slug}',[CartController::class, 'SingleCart'])->name('SingleCart');
+Route::get('cart-product',[CartController::class, 'CartProduct'])->name('CartProduct');
