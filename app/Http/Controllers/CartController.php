@@ -38,4 +38,13 @@ class CartController extends Controller
             'carts'=>$cart,
         ]);
     }
+
+    function CartUpdate(Request $request){
+        foreach($request->cart_id as $key=> $cart){
+            Cart::findOrFail($cart)->update([
+                'quantity'=>$request->quantity[$key],
+            ]);
+        }
+        return back();
+    }
 }

@@ -22,7 +22,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="http://themepresss.com/tf/html/tohoney/cart">
+                    <form action="{{ route('CartUpdate') }}" method="POST">
+                        @csrf
                         <table class="table-responsive cart-wrap">
                             <thead>
                                 <tr>
@@ -36,6 +37,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($carts as $cart)
+                                <input type="hidden" name="cart_id[]" value="{{ $cart->id }}">
                                     <tr>
                                         <td class="images">
                                             <img src="{{ asset('Images/' . $cart->created_at->format('Y/m/') . $cart->product_id . '/' . $cart->product->thumbnail) }}" alt="">
@@ -45,11 +47,9 @@
                                         </td>
                                         <td class="ptice">${{ $cart->product->price }}</td>
                                         <td class="quantity cart-plus-minus">
-                                            <input type="text" value="{{ $cart->quantity }}">
-                                            <div class="dec qtybutton">-</div>
-                                            <div class="inc qtybutton">+</div>
+                                            <input type="text" name="quantity[]" value="{{ $cart->quantity }}">
                                         </td>
-                                        <td class="total">${{ $cart->product->price }}</td>
+                                        <td class="total">${{ $cart->product->price * $cart->quantity }}</td>
                                         <td class="remove"><i class="fa fa-times"></i></td>
                                     </tr>
                                 @endforeach
@@ -62,7 +62,7 @@
                                         <li>
                                             <button>Update Cart</button>
                                         </li>
-                                        <li><a href="shop.html">Continue Shopping</a></li>
+                                        <li><a href="{{ route('ShopPage') }}">Continue Shopping</a></li>
                                     </ul>
                                     <h3>Cupon</h3>
                                     <p>Enter Your Cupon Code if You Have One</p>
@@ -76,7 +76,7 @@
                                 <div class="cart-total text-right">
                                     <h3>Cart Totals</h3>
                                     <ul>
-                                        <li><span class="pull-left">Subtotal </span>$380.00</li>
+                                        <li><span class="pull-left">Subtotal </span>$</li>
                                         <li><span class="pull-left"> Total </span> $380.00</li>
                                     </ul>
                                     <a href="checkout.html">Proceed to Checkout</a>
