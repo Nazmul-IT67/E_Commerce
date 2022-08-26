@@ -26,9 +26,7 @@
                     <div class="product-single-img">
 
                         <div class="product-active owl-carousel">
-                            {{-- <div class="item">
-                                <img src="{{ asset('Images/' . $products->created_at->format('Y/m/') . $products->id . '/' . $products->thumbnail) }}" alt="">
-                            </div> --}}
+
                             @foreach ($products->ProductGallery as $gallery)
                                 <div class="item">
                                     <img src="{{ asset('Images/Gallerys/' . $gallery->created_at->format('Y/m/') . $gallery->product_id . '/' . $gallery->product_gallery) }}" alt="">
@@ -37,9 +35,7 @@
                         </div>
 
                         <div class="product-thumbnil-active  owl-carousel">
-                            {{-- <div class="item">
-                                <img src="{{ asset('Images/' . $products->created_at->format('Y/m/') . $products->id . '/' . $products->thumbnail) }}" alt="">
-                            </div> --}}
+
                             @foreach ($products->ProductGallery as $gallery)
                                 <div class="item">
                                     <img src="{{ asset('Images/Gallerys/' . $gallery->created_at->format('Y/m/') . $gallery->product_id . '/' . $gallery->product_gallery) }}" alt="">
@@ -65,16 +61,19 @@
                             </ul>
                         </div>
                         <p>{{ $products->description }}</p>
+
                         <ul class="input-style">
                             <li class="quantity cart-plus-minus">
                                 <input type="text" value="1" />
                             </li>
-                            <li><a href="cart.html">Add to Cart</a></li>
+                            <li><a href="{{ route('SingleCart', $products->slug) }}">Add to Cart</a></li>
                         </ul>
+
                         <ul class="cetagory">
                             <li>Categories:</li>
                             <li><a href="#">{{ $products->category->category_name }}</a></li>
                         </ul>
+
                         <ul class="socil-icon">
                             <li>Share :</li>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>

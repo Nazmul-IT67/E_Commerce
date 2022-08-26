@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -26,4 +27,5 @@ class Product extends Model
     function Cart(){
         return $this->hasMany(Cart::class, 'cart_id');
     }
+
 }

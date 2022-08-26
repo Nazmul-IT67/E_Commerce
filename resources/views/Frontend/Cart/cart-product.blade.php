@@ -36,6 +36,9 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $total=0;
+                                @endphp
                                 @foreach ($carts as $cart)
                                 <input type="hidden" name="cart_id[]" value="{{ $cart->id }}">
                                     <tr>
@@ -49,6 +52,9 @@
                                         <td class="quantity cart-plus-minus">
                                             <input type="text" name="quantity[]" value="{{ $cart->quantity }}">
                                         </td>
+                                        @php
+                                            $total+= ($cart->product->price * $cart->quantity)
+                                        @endphp
                                         <td class="total">${{ $cart->product->price * $cart->quantity }}</td>
                                         <td class="remove"><i class="fa fa-times"></i></td>
                                     </tr>
@@ -77,7 +83,7 @@
                                     <h3>Cart Totals</h3>
                                     <ul>
                                         <li><span class="pull-left">Subtotal </span>$</li>
-                                        <li><span class="pull-left"> Total </span> $380.00</li>
+                                        <li><span class="pull-left"> Total </span> ${{ $total }}</li>
                                     </ul>
                                     <a href="checkout.html">Proceed to Checkout</a>
                                 </div>
@@ -89,3 +95,4 @@
         </div>
     </div>
 @endsection
+

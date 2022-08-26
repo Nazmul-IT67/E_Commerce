@@ -169,23 +169,35 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>3</span></a>
+                                <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>{{ $count }}</span></a>
+                                @php
+                                    $total=0;
+                                @endphp
                                 <ul class="cart-wrap dropdown_style">
-                                    @foreach (CartProduct() as $cart)
+                                    @foreach (CartProduct() as $item)
                                         <li class="cart-items">
                                             <div class="cart-img">
-                                                <img src="{{ asset('front/assets/images/cart/1.jpg') }}"
-                                                    alt="">
-                                            </div>
-                                            <div class="cart-content">
-                                                <a href="cart.html">Pure Nature Product</a>
-                                                <span>QTY : 1</span>
-                                                <p>$35.00</p>
-                                                <i class="fa fa-times"></i>
+                                                <img src="{{ asset('Images/' . $item->product->created_at->format('Y/m/') . $item->product->id . '/' . $item->product->thumbnail) }}"
+                                                alt="" class="img-fluid">
+
+                                                <a href="cart.html">{{ $item->product->title }}</a><br>
+                                                @php
+                                                    $total+= ($item->product->price * $item->quantity)
+                                                @endphp
+
+                                                <span>QTY :{{ $item->quantity }}</span>
+                                                <div>
+                                                    <p>Product Price: ${{ $item->product->price }}</p>
+                                                </div>
+                                                <div>
+                                                    <p>Totla Product Price: ${{ $item->product->price*$item->quantity }}</p>
+                                                </div>
+
                                             </div>
                                         </li>
                                     @endforeach
-                                    <li>Subtotol: <span class="pull-right">$70.00</span></li>
+
+                                    <li>Subtotol: <span class="pull-right">${{ $total }}</span></li>
                                     <li>
                                         <button>Check Out</button>
                                     </li>

@@ -313,7 +313,7 @@
                                                 <li class="quantity cart-plus-minus">
                                                     <input type="text" value="1" />
                                                 </li>
-                                                <li><a href="cart.html">Add to Cart</a></li>
+                                                <li><a href="{{ route('SingleCart', $product->slug) }}">Add to Cart</a></li>
                                             </ul>
                                             <ul class="cetagory">
                                                 <li>Category: </li>

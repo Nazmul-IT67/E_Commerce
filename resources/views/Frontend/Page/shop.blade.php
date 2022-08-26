@@ -53,7 +53,7 @@
                                                         data-target="#exampleModalCenter{{ $product->id }}"
                                                         href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                                 <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
+                                                <li><a href="{{ route('SingleCart', $product->slug) }}"><i class="fa fa-shopping-bag"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@
                                                     <li class="quantity cart-plus-minus">
                                                         <input type="text" value="1" />
                                                     </li>
-                                                    <li><a href="cart.html">Add to Cart</a></li>
+                                                    <li><a href="{{ route('SingleCart', $product->slug) }}">Add to Cart</a></li>
                                                 </ul>
                                                 <ul class="cetagory">
                                                     <li>Category: </li>
@@ -142,13 +142,14 @@
                                                             data-target="#exampleModalCenter{{ $item->id }}"
                                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                                     <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
+                                                    <li><a href="{{ route('SingleCart', $item->slug) }}"><i class="fa fa-shopping-bag"></i></a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <div class="product-content">
                                             <h3><a
-                                                    href="{{ route('SingleProduct', $item->slug) }}">{{ $item->title }}</a>
+                                                    href="#">{{ $item->title }}
+                                                </a>
                                             </h3>
                                             <p class="pull-left">${{ $item->price }}
 

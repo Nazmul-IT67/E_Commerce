@@ -12,6 +12,7 @@ class Cart extends Model
     protected $fillable=[
         'quantity'
     ];
+
     function Product(){
         return $this->belongsTo(Product::class, 'product_id');
     }
