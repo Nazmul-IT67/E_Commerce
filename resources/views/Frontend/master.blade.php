@@ -177,22 +177,20 @@
                                     @foreach (CartProduct() as $item)
                                         <li class="cart-items">
                                             <div class="cart-img">
-                                                <img src="{{ asset('Images/' . $item->product->created_at->format('Y/m/') . $item->product->id . '/' . $item->product->thumbnail) }}"
-                                                alt="" class="img-fluid">
+                                                <div class="col-10">
+                                                    <a href="cart.html">{{ $item->product->title }}</a><br>
+                                                    @php
+                                                        $total+= ($item->product->price * $item->quantity)
+                                                    @endphp
 
-                                                <a href="cart.html">{{ $item->product->title }}</a><br>
-                                                @php
-                                                    $total+= ($item->product->price * $item->quantity)
-                                                @endphp
-
-                                                <span>QTY :{{ $item->quantity }}</span>
-                                                <div>
-                                                    <p>Product Price: ${{ $item->product->price }}</p>
+                                                    <span>QTY :{{ $item->quantity }}</span>
+                                                    <div>
+                                                        <p>Product Price: ${{ $item->product->price }}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p>Totla Product Price: ${{ $item->product->price*$item->quantity }}</p>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <p>Totla Product Price: ${{ $item->product->price*$item->quantity }}</p>
-                                                </div>
-
                                             </div>
                                         </li>
                                     @endforeach
@@ -375,6 +373,8 @@
     <script src="{{ asset('front/assets/js/jquery-ui.min.js') }}"></script>
     <!-- main js -->
     <script src="{{ asset('front/assets/js/scripts.js') }}"></script>
+
+    @yield('footer_js')
 </body>
 
 

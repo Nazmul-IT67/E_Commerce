@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductAttrebuitsTable extends Migration
+class CreateProductAttributesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateProductAttrebuitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_attrebuits', function (Blueprint $table) {
+        Schema::create('product_attributes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id');
-            $table->foreignId('color_id');
-            $table->foreignId('size_id');
-            $table->string('quantity');
-            $table->double('price');
+            $table->foreignId('color_id')->nullable();
+            $table->foreignId('size_id')->nullable();
+            $table->double('price')->nullable();
+            $table->string('quantity')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateProductAttrebuitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_attrebuits');
+        Schema::dropIfExists('product_attributes');
     }
 }

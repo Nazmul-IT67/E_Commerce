@@ -9,4 +9,7 @@ class Color extends Model
 {
     use HasFactory;
 
+    function attribute(){
+        return $this->hasMany(ProductAttribute::class, 'color_id');
+    }
 }

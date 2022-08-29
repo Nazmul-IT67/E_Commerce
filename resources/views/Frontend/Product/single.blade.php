@@ -61,19 +61,39 @@
                             </ul>
                         </div>
                         <p>{{ $products->description }}</p>
+                        <form action="{{ route('ProductCurt') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $products->id }}">
+                            <ul class="input-style">
+                                <li class="quantity cart-plus-minus">
+                                    <input type="text" name="quantity" value="1" />
+                                </li>
+                                <li><button type="submit" class="btn btn-secondary">Add to Cart</button></li>
+                            </ul>
 
-                        <ul class="input-style">
-                            <li class="quantity cart-plus-minus">
-                                <input type="text" value="1" />
-                            </li>
-                            <li><a href="{{ route('SingleCart', $products->slug) }}">Add to Cart</a></li>
-                        </ul>
+                            <ul class="cetagory">
+                                <li>Categories:</li>
+                                <li><a href="#">{{ $products->category->category_name }}</a></li>
+                            </ul>
 
-                        <ul class="cetagory">
-                            <li>Categories:</li>
-                            <li><a href="#">{{ $products->category->category_name }}</a></li>
-                        </ul>
+                            <ul class="cetagory">
+                                <li>Color:</li>
+                                <li>
+                                @foreach ($products->attribute as $data)
+                                <input type="radio" name="color_id" id="color{{ $data->id }}" value="{{ $data->color->id }}"> <label for="color{{ $data->id }}">{{ $data->color->color_name }}</label>
+                                @endforeach
+                                </li>
+                            </ul>
 
+                            <ul class="cetagory">
+                                <li>Size:</li>
+                                <li>
+                                    @foreach ($products->attribute as $size)
+                                    <input type="radio" name="size_id" id="size{{ $size->id }}" value="{{ $size->size->id }}"> <label for="size{{ $size->id }}">{{ $size->size->size_name }}</label>
+                                    @endforeach
+                                </li>
+                            </ul>
+                        </form>
                         <ul class="socil-icon">
                             <li>Share :</li>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
