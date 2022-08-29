@@ -151,5 +151,8 @@
         })
         @endforeach
     </script>
+    <script>
+
+    </script>
 @endsection
 
