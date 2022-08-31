@@ -133,6 +133,22 @@
                 sum +=parseInt(item.innerHTML);
                 $('.sub_total').html('$'+sum);
             })
+
+            //ajax
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:"{{ url('ajaxcartupdate') }}",
+                method:'POST',
+                data:{
+                    id:'{{ $cart->id }}',
+                    qty:quantity,
+                }
+            });
+
         })
 
         $('.mainus{{ $cart->id }}').click(function(){
@@ -148,6 +164,22 @@
                 sum +=parseInt(item.innerHTML);
                 $('.sub_total').html('$'+sum);
             })
+
+            //ajax
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:"{{ url('ajaxcartupdate') }}",
+                method:'POST',
+                data:{
+                    id:'{{ $cart->id }}',
+                    qty:quantity,
+                }
+            });
+
         })
         @endforeach
     </script>

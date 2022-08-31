@@ -77,4 +77,10 @@ class CartController extends Controller
         }
         return back();
     }
+
+    function AjaxCartUpdate(Request $request){
+        Cart::findOrFail($request->id)->update([
+            'quantity'=>$request->qty,
+        ]);
+    }
 }

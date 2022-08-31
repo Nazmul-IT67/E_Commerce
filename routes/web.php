@@ -89,3 +89,4 @@ Route::get('single/cart/{slug}',[CartController::class, 'SingleCart'])->name('Si
 Route::POST('product/cart/',[CartController::class, 'ProductCurt'])->name('ProductCurt');
 Route::get('cart-product',[CartController::class, 'CartProduct'])->name('CartProduct');
 Route::POST('cart-update',[CartController::class, 'CartUpdate'])->name('CartUpdate');
+Route::POST('ajaxcartupdate',[CartController::class, 'AjaxCartUpdate'])->name('AjaxCartUpdate');
