@@ -50,7 +50,7 @@
                     <div class="product-single-content">
                         <h3>{{ $products->title }}</h3>
                         <div class="rating-wrap fix">
-                            <span class="pull-left">${{ $products->price }}</span>
+                            <span class="pull-left">${{ $products->price }}(@foreach ($products->attribute as $data){{ $data->quantity }}@endforeach)</span>
                             <ul class="rating pull-right">
                                 <li><i class="fa fa-star"></i></li>
                                 <li><i class="fa fa-star"></i></li>
@@ -466,4 +466,24 @@
         </div>
     </div>
     <!-- Releted-product-area end -->
+@endsection
+@section('footer_js')
+    <script>
+
+        $(".qtybutton").on("click", function() {
+            var $button = $(this);
+            var oldValue = $button.parent().find("input").val();
+            if ($button.text() == "+") {
+                var newVal = parseFloat(oldValue) + 1;
+            } else {
+                // Don't allow decrementing below zero
+                if (oldValue > 0) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 0;
+                }
+            }
+            $button.parent().find("input").val(newVal);
+        });
+    </script>
 @endsection

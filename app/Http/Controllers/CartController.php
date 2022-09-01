@@ -41,13 +41,19 @@ class CartController extends Controller
         ]);
     }
 
-    function CartUpdate(Request $request){
-        foreach($request->cart_id as $key=> $cart){
-            Cart::findOrFail($cart)->update([
-                'quantity'=>$request->quantity[$key],
-            ]);
-        }
-        return back();
+    // function CartUpdate(Request $request){
+    //     foreach($request->cart_id as $key=> $cart){
+    //         Cart::findOrFail($cart)->update([
+    //             'quantity'=>$request->quantity[$key],
+    //         ]);
+    //     }
+    //     return back();
+    // }
+
+    function AjaxCartUpdate(Request $request){
+        Cart::findOrFail($request->id)->update([
+            'quantity'=>$request->qty,
+        ]);
     }
 
     function ProductCurt(Request $request){
@@ -78,9 +84,4 @@ class CartController extends Controller
         return back();
     }
 
-    function AjaxCartUpdate(Request $request){
-        Cart::findOrFail($request->id)->update([
-            'quantity'=>$request->qty,
-        ]);
-    }
 }

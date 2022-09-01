@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="{{ route('CartUpdate') }}" method="POST">
+                    {{-- <form action="{{ route('CartUpdate') }}" method="POST"> --}}
                         @csrf
                         <table class="table-responsive cart-wrap">
                             <thead>
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    {{-- </form> --}}
                 </div>
             </div>
         </div>
@@ -182,9 +182,6 @@
 
         })
         @endforeach
-    </script>
-    <script>
-
     </script>
 @endsection
 

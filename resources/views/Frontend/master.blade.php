@@ -170,9 +170,10 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>{{ $count }}</span></a>
+                                <a href="javascript:void(0);"><i class="flaticon-shop"></i>
+                                    <span>{{ $count }}</span></a>
                                 @php
-                                    $total=0;
+                                    $total = 0;
                                 @endphp
                                 <ul class="cart-wrap dropdown_style">
                                     @foreach (CartProduct() as $item)
@@ -181,7 +182,7 @@
                                                 <div class="col-10">
                                                     <a href="cart.html">{{ $item->product->title }}</a><br>
                                                     @php
-                                                        $total+= ($item->product->price * $item->quantity)
+                                                        $total += $item->product->price * $item->quantity;
                                                     @endphp
 
                                                     <span>QTY :{{ $item->quantity }}</span>
@@ -189,7 +190,8 @@
                                                         <p>Product Price: ${{ $item->product->price }}</p>
                                                     </div>
                                                     <div>
-                                                        <p>Totla Product Price: ${{ $item->product->price*$item->quantity }}</p>
+                                                        <p>Totla Product Price:
+                                                            ${{ $item->product->price * $item->quantity }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -376,9 +378,7 @@
     <script src="{{ asset('front/assets/js/scripts.js') }}"></script>
 
     @yield('footer_js')
+
 </body>
-
-
-<!-- Mirrored from themepresss.com/tf/html/tohoney/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Mar 2020 03:33:34 GMT -->
 
 </html>

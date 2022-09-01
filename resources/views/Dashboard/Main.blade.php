@@ -92,6 +92,10 @@
                                     </ul>
                                 </li>
 
+
+                                <li class="@yield('cupon')"><a href="{{ route('Cupon') }}"><i class="fa fa-dollar"></i> Cupon</a>
+                                </li>
+
                                 <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span
                                             class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
