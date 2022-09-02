@@ -22,15 +22,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    {{-- <form action="{{ route('CartUpdate') }}" method="POST"> --}}
+                    <form action="{{ route('CartUpdate') }}" method="POST">
                         @csrf
                         <table class="table-responsive cart-wrap">
                             <thead>
                                 <tr>
                                     <th class="images">Image</th>
                                     <th class="product">Product</th>
-                                    {{-- <th class="product">Color</th>
-                                    <th class="product">Size</th> --}}
                                     <th class="ptice">Price</th>
                                     <th class="quantity">Quantity</th>
                                     <th class="total">Total</th>
@@ -75,10 +73,19 @@
                                         <li><a href="{{ route('ShopPage') }}">Continue Shopping</a></li>
                                     </ul>
                                     <h3>Cupon</h3>
+                                    <style>
+                                        .cupon-wrap span {width: 150px; height: 45px; position: absolute;background: #ef4836; color: #fff; text-transform: uppercase;
+                                        padding: 10px;}
+                                    </style>
                                     <p>Enter Your Cupon Code if You Have One</p>
+                                    @if (session('Invalid'))
+                                        <div class="alert alert-danger invalid">
+                                            {{ session('Invalid') }}
+                                        </div>
+                                    @endif
                                     <div class="cupon-wrap">
-                                        <input type="text" placeholder="Cupon Code">
-                                        <button>Apply Cupon</button>
+                                        <input class="cupon col-6" value="{{ $cupon ?? '' }}" name="cupon" type="text" placeholder="Cupon Code">
+                                        <span id="cupon">Apply Cupon</span>
                                     </div>
                                 </div>
                             </div>
@@ -87,13 +94,36 @@
                                     <h3>Cart Totals</h3>
                                     <ul>
                                         <li><span class="pull-left">Subtotal </span><span class="sub_total">${{ $total }}</span></li>
-                                        <li><span class="pull-left"> Total </span><span class="sub_total">${{ $total }}</span></li>
+                                        @isset($discount_type)
+                                        <li>
+                                            <span class="pull-left">Discount({{ $discount_type==1 ? '%':'$' }})</span>
+                                            <span class="sub_total">({{ $discount_amount ?? '' }})</span>
+                                        </li>
+                                        @endisset
+                                        <li>
+                                            <span class="pull-left">Total</span>
+                                            <span class="sub_total">
+                                                @if ($discount_type==1)
+                                                    @if ($min_amount<=$total)
+                                                        ${{ $total - $total*($discount_amount/100) }}
+                                                    @else
+                                                        ${{ $total }}
+                                                    @endif
+                                                @else
+                                                    @if ($min_amount<=$total)
+                                                    ${{ $total - $discount_amount }}
+                                                    @else
+                                                        ${{ $total }}
+                                                    @endif
+                                                @endif
+                                            </span>
+                                        </li>
                                     </ul>
-                                    <a href="checkout.html">Proceed to Checkout</a>
+                                    <a href="{{ route('Checkout') }}">Proceed to Checkout</a>
                                 </div>
                             </div>
                         </div>
-                    {{-- </form> --}}
+                    </form>
                 </div>
             </div>
         </div>
@@ -182,6 +212,13 @@
 
         })
         @endforeach
+
+        //cupon
+        $('#cupon').click(function(){
+            var cupon=$('.cupon').val();
+            window.location.href="{{ url('cart-product') }}/"+cupon;
+        })
+        $('.invalid').fadeOut(5000);
     </script>
 @endsection
 

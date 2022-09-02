@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Color;
+use App\Models\Cupon;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
 use App\Models\Product;
+use Carbon\Carbon;
 
 class CartController extends Controller
 {
@@ -32,23 +34,57 @@ class CartController extends Controller
         return back();
     }
 
-    function CartProduct(Request $request){
-        $old_id=$request->cookie('cookie_id');
-        $cart=Cart::where('cookie_id', $old_id)->get();
-        return view('Frontend.Cart.cart-product',[
-            'carts'=>$cart,
-            'count'=>$count=Cart::count(),
-        ]);
+    function CartProduct(Request $request, $slug =''){
+        if($slug==''){
+            $old_id=$request->cookie('cookie_id');
+            $cart=Cart::where('cookie_id', $old_id)->get();
+            $discount_amount=0;
+            $discount_type=null;
+            $min_amount=0;
+            return view('Frontend.Cart.cart-product',[
+                'carts'=>$cart,
+                'count'=>$count=Cart::count(),
+                'discount_amount'=>$discount_amount,
+                'discount_type'=>$discount_type,
+                'min_amount'=>$min_amount,
+            ]);
+        }else{
+            $cupon=Cupon::where('code',$slug)->exists();
+            if($cupon){
+                if(Carbon::now()->format('Y-m-d') <= Cupon::where('code', $slug)->first()->end_date){
+                    $old_id=$request->cookie('cookie_id');
+                    $cart=Cart::where('cookie_id', $old_id)->get();
+                    $amount=Cupon::where('code', $slug)->first();
+                    $discount_amount=$amount->discount_amount;
+                    $discount_type=$amount->discount_type;
+                    $min_amount=$amount->min_amount;
+
+                    session(['cupon', $slug]);
+
+                    return view('Frontend.Cart.cart-product',[
+                        'carts'=>$cart,
+                        'count'=>$count=Cart::count(),
+                        'discount_amount'=>$discount_amount,
+                        'discount_type'=>$discount_type,
+                        'min_amount'=>$min_amount,
+                    ]);
+                }else{
+                    return back()->with('Invalid','Expaire Cupon Code');
+                }
+            }else{
+                return back()->with('Invalid','Invalid Cupon Code');
+            }
+        }
     }
 
-    // function CartUpdate(Request $request){
-    //     foreach($request->cart_id as $key=> $cart){
-    //         Cart::findOrFail($cart)->update([
-    //             'quantity'=>$request->quantity[$key],
-    //         ]);
-    //     }
-    //     return back();
-    // }
+    function CartUpdate(Request $request){
+        foreach($request->cart_id as $key=> $cart){
+            Cart::findOrFail($cart)->update([
+                'quantity'=>$request->quantity[$key],
+            ]);
+        }
+        return back();
+    }
 
     function AjaxCartUpdate(Request $request){
         Cart::findOrFail($request->id)->update([

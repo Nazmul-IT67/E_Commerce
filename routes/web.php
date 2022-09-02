@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CuponController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,7 +90,8 @@ Route::POST('size', [ProductController::class, 'SizePost'])->name('SizePost');
 Route::get('single/cart/{slug}',[CartController::class, 'SingleCart'])->name('SingleCart');
 Route::POST('product/cart/',[CartController::class, 'ProductCurt'])->name('ProductCurt');
 Route::get('cart-product',[CartController::class, 'CartProduct'])->name('CartProduct');
-// Route::POST('cart-update',[CartController::class, 'CartUpdate'])->name('CartUpdate');
+Route::get('cart-product/{slug}',[CartController::class, 'CartProduct'])->name('CartCupon');
+Route::POST('cart-update',[CartController::class, 'CartUpdate'])->name('CartUpdate');
 Route::POST('ajaxcartupdate',[CartController::class, 'AjaxCartUpdate'])->name('AjaxCartUpdate');
 /*
 |--------------------------------------------------------------------------
@@ -98,3 +100,9 @@ Route::POST('ajaxcartupdate',[CartController::class, 'AjaxCartUpdate'])->name('A
 */
 Route::get('cupon', [CuponController::class, 'Cupon'])->name('Cupon');
 Route::post('cupon-post', [CuponController::class, 'CuponPost'])->name('CuponPost');
+/*
+|--------------------------------------------------------------------------
+| Checkout Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('checkout', [CheckoutController::class, 'Checkout'])->name('Checkout');
