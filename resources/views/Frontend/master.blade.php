@@ -72,14 +72,37 @@
                                 <a href="javascript:void(0);"><i class="fa fa-user"></i> My Account <i
                                         class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown_style">
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
+                                    <li>
+                                        @auth
+                                            <a href="#">Profile</a>
+                                        @else
+                                            <a href="{{ route('register') }}"> Register</a>
+                                        @endauth
+                                    </li>
                                     <li><a href="cart.html">Cart</a></li>
                                     <li><a href="checkout.html">Checkout</a></li>
                                     <li><a href="wishlist.html">wishlist</a></li>
+                                    <li>
+                                        <a href="{{ route('logout') }}">
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <dropdown-link :href="route('logout')"
+                                                    onclick="event.  preventDefault();
+                                                    this.closest('form').submit();">
+                                                    Log Out
+                                                </dropdown-link>
+                                            </form>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
-                            <li><a href="register.html"> Login/Register </a></li>
+                            <li>
+                                @auth
+                                    <a href="{{ route('Dashboard') }}">Dashboard</a>
+                                @else
+                                    <a href="{{ route('login') }}"> Login</a>
+                                @endauth
+                            </li>
                         </ul>
                     </div>
                 </div>

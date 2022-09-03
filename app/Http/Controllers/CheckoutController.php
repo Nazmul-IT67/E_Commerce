@@ -18,4 +18,8 @@ class CheckoutController extends Controller
             'count'=>$count=Cart::count(),
         ]);
     }
+
+    function CheckoutPost(Request $request){
+        return'Ok';
+    }
 }

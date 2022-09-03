@@ -106,3 +106,4 @@ Route::post('cupon-post', [CuponController::class, 'CuponPost'])->name('CuponPos
 |--------------------------------------------------------------------------
 */
 Route::get('checkout', [CheckoutController::class, 'Checkout'])->name('Checkout');
+Route::POST('checkout', [CheckoutController::class, 'CheckoutPost'])->name('CheckoutPost');

@@ -25,62 +25,88 @@
                 <div class="col-lg-8">
                     <div class="checkout-form form-style">
                         <h3>Billing Details</h3>
-                        <form action="http://themepresss.com/tf/html/tohoney/checkout">
+                        <form action="{{ route('CheckoutPost') }}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-sm-6 col-12">
                                     <p>First Name *</p>
-                                    <input type="text">
+                                    <input type="text" name="name">
                                 </div>
-                                <div class="col-sm-6 col-12">
-                                    <p>Last Name *</p>
-                                    <input type="text">
-                                </div>
-                                <div class="col-12">
-                                    <p>Compani Name</p>
-                                    <input type="text">
-                                </div>
+
                                 <div class="col-sm-6 col-12">
                                     <p>Email Address *</p>
-                                    <input type="email">
+                                    <input type="email" name="email">
                                 </div>
+
                                 <div class="col-sm-6 col-12">
                                     <p>Phone No. *</p>
-                                    <input type="text">
+                                    <input type="text" name="phone">
                                 </div>
-                                <div class="col-12">
-                                    <p>Country *</p>
-                                    <input type="text">
-                                </div>
-                                <div class="col-12">
-                                    <p>Your Address *</p>
-                                    <input type="text">
-                                </div>
+
                                 <div class="col-sm-6 col-12">
-                                    <p>Postcode/ZIP</p>
-                                    <input type="email">
+                                    <p>Your Address *</p>
+                                    <input type="text" name="address">
                                 </div>
+
+                                <div class="col-sm-6 col-12">
+                                    <p>Country</p>
+                                    <select id="s_country" name="country_id">
+                                        <option value="1">Select Your Country</option>
+                                        <option value="2">bangladesh</option>
+                                        <option value="3">Algeria</option>
+                                        <option value="4">Afghanistan</option>
+                                        <option value="5">Ghana</option>
+                                        <option value="6">Albania</option>
+                                        <option value="7">Bahrain</option>
+                                        <option value="8">Colombia</option>
+                                        <option value="9">Dominican Republic</option>
+                                    </select>
+                                </div>
+
                                 <div class="col-sm-6 col-12">
                                     <p>Town/City *</p>
-                                    <input type="text">
+                                    <input type="text" name="zipcode">
                                 </div>
-                                <div class="col-12">
-                                    <input id="toggle1" type="checkbox">
-                                    <label for="toggle1">Pure CSS Accordion</label>
-                                    <div class="create-account">
-                                        <p>Create an account by entering the information below. If you are a returning
-                                            customer please login at the top of the page.</p>
-                                        <span>Account password</span>
-                                        <input type="password">
-                                    </div>
+
+                                <div class="col-sm-6 col-12">
+                                    <p>Postcode/ZIP</p>
+                                    <input type="email" name="zipcode">
                                 </div>
+
+                                <div class="col-sm-6 col-12">
+                                    <p>Compani Name</p>
+                                    <input type="text" name="company_name">
+                                </div>
+
+
                                 <div class="col-12">
-                                    <input id="toggle2" type="checkbox">
+                                    <input value="1" id="toggle2" type="checkbox">
                                     <label class="fontsize" for="toggle2">Ship to a different address?</label>
                                     <div class="row" id="open2">
                                         <div class="col-12">
+                                            <p>First Name *</p>
+                                            <input type="text" name="s_name">
+                                        </div>
+
+                                        <div class="col-12">
+                                            <p>Email Address *</p>
+                                            <input type="email" name="s_email">
+                                        </div>
+
+                                        <div class="col-12">
+                                            <p>Phone No. *</p>
+                                            <input type="text" name="s_phone">
+                                        </div>
+
+                                        <div class="col-12">
+                                            <p>Your Address *</p>
+                                            <input type="text" name="s_address">
+                                        </div>
+
+                                        <div class="col-12">
                                             <p>Country</p>
-                                            <select id="s_country">
-                                                <option value="1">Select a country</option>
+                                            <select id="s_country" name="s_country_id">
+                                                <option value="1">Select Your Country</option>
                                                 <option value="2">bangladesh</option>
                                                 <option value="3">Algeria</option>
                                                 <option value="4">Afghanistan</option>
@@ -91,87 +117,80 @@
                                                 <option value="9">Dominican Republic</option>
                                             </select>
                                         </div>
-                                        <div class=" col-12">
-                                            <p>First Name</p>
-                                            <input id="s_f_name" type="text" />
-                                        </div>
-                                        <div class=" col-12">
-                                            <p>Last Name</p>
-                                            <input id="s_l_name" type="text" />
-                                        </div>
+
                                         <div class="col-12">
-                                            <p>Company Name</p>
-                                            <input id="s_c_name" type="text" />
+                                            <p>State/Country</p>
+                                            <select id="s_state" name="s_state_id">
+                                                <option value="1">Select Your Country</option>
+                                                <option value="2">bangladesh</option>
+                                                <option value="3">Algeria</option>
+                                                <option value="4">Afghanistan</option>
+                                                <option value="5">Ghana</option>
+                                                <option value="6">Albania</option>
+                                                <option value="7">Bahrain</option>
+                                                <option value="8">Colombia</option>
+                                                <option value="9">Dominican Republic</option>
+                                            </select>
                                         </div>
+
                                         <div class="col-12">
-                                            <p>Address</p>
-                                            <input type="text" placeholder="Street address" />
+                                            <p>Town/City *</p>
+                                            <input type="text" name="s_zipcode">
                                         </div>
+
                                         <div class="col-12">
-                                            <input type="text" placeholder="Apartment, suite, unit etc. (optional)" />
+                                            <p>Postcode/ZIP</p>
+                                            <input type="email" name="s_zipcode">
                                         </div>
+
                                         <div class="col-12">
-                                            <p>Town / City </p>
-                                            <input id="s_city" type="text" placeholder="Town / City" />
-                                        </div>
-                                        <div class="col-12">
-                                            <p>State / County </p>
-                                            <input id="s_county" type="text" />
-                                        </div>
-                                        <div class="col-12">
-                                            <p>Postcode / Zip </p>
-                                            <input id="s_zip" type="text" placeholder="Postcode / Zip" />
-                                        </div>
-                                        <div class="col-12">
-                                            <p>Email Address </p>
-                                            <input id="s_email" type="email" />
-                                        </div>
-                                        <div class="col-12">
-                                            <p>Phone </p>
-                                            <input id="s_phone" type="text" placeholder="Phone Number" />
+                                            <p>Compani Name</p>
+                                            <input type="text" name="s_company_name">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-12">
                                     <p>Order Notes </p>
                                     <textarea name="massage" placeholder="Notes about Your Order, e.g.Special Note for Delivery"></textarea>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="order-area">
-                        <h3>Your Order</h3>
-                        <ul class="total-cost">
-                            <li>Pure Nature Honey <span class="pull-right">$139.00</span></li>
-                            <li>Your Product Name <span class="pull-right">$100.00</span></li>
-                            <li>Pure Nature Honey <span class="pull-right">$141.00</span></li>
-                            <li>Subtotal <span class="pull-right"><strong>$380.00</strong></span></li>
-                            <li>Shipping <span class="pull-right">Free</span></li>
-                            <li>Total<span class="pull-right">$380.00</span></li>
-                        </ul>
-                        <ul class="payment-method">
-                            <li>
-                                <input id="bank" type="checkbox">
-                                <label for="bank">Direct Bank Transfer</label>
-                            </li>
-                            <li>
-                                <input id="paypal" type="checkbox">
-                                <label for="paypal">Paypal</label>
-                            </li>
-                            <li>
-                                <input id="card" type="checkbox">
-                                <label for="card">Credit Card</label>
-                            </li>
-                            <li>
-                                <input id="delivery" type="checkbox">
-                                <label for="delivery">Cash on Delivery</label>
-                            </li>
-                        </ul>
-                        <button>Place Order</button>
+
+                    <div class="col-lg-4">
+                        <div class="order-area">
+                            <h3>Your Order</h3>
+                            <ul class="total-cost">
+                                <li>Pure Nature Honey <span class="pull-right">$139.00</span></li>
+                                <li>Your Product Name <span class="pull-right">$100.00</span></li>
+                                <li>Pure Nature Honey <span class="pull-right">$141.00</span></li>
+                                <li>Subtotal <span class="pull-right"><strong>$380.00</strong></span></li>
+                                <li>Shipping <span class="pull-right">Free</span></li>
+                                <li>Total<span class="pull-right">$380.00</span></li>
+                            </ul>
+                            <ul class="payment-method">
+                                <li class="form-check">
+                                    <input type="radio" name="payment" id="flexRadioDefault1">
+                                    <label for="flexRadioDefault1">Direct Bank Transfer</label>
+                                </li>
+                                <li class="form-check">
+                                    <input type="radio" name="payment" id="flexRadioDefault2">
+                                    <label for="flexRadioDefault2">Paypal</label>
+                                </li>
+                                <li class="form-check">
+                                    <input type="radio" name="payment" id="flexRadioDefault3">
+                                    <label for="flexRadioDefault3">Credit Card</label>
+                                </li>
+                                <li class="form-check">
+                                    <input type="radio" name="payment" id="flexRadioDefault4">
+                                    <label for="flexRadioDefault4">Cash on Delivery</label>
+                                </li>
+                            </ul>
+                            <button>Place Order</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
