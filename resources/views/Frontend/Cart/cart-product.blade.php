@@ -10,7 +10,7 @@
                     <div class="breadcumb-wrap text-center">
                         <h2>Shopping Cart</h2>
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('Frontend') }}">Home</a></li>
                             <li><span>Shopping Cart</span></li>
                         </ul>
                     </div>
@@ -43,12 +43,16 @@
                                 <input type="hidden" name="cart_id[]" value="{{ $cart->id }}">
                                     <tr>
                                         <td class="images">
-                                            <img src="{{ asset('Images/' . $cart->created_at->format('Y/m/') . $cart->product_id . '/' . $cart->product->thumbnail) }}" alt="">
+                                            <img src="{{ asset('Images/' . $cart->product->created_at->format('Y/m/') . $cart->product->id . '/' . $cart->product->thumbnail) }}"
+                                            alt="">
                                         </td>
+
                                         <td class="product">
-                                            <a href="single-product.html">{{ $cart->product->title }}</a>
+                                            <a href="{{ route('ShopPage') }}">{{ $cart->product->title }}</a>
                                         </td>
+
                                         <td class="price{{ $cart->id }}" data-unit{{ $cart->id }}="{{ $cart->product->price }}">${{ $cart->product->price }}</td>
+
                                         <td class="quantity cart-plus-minus">
                                             <input type="text" class="quantity{{ $cart->id }}" name="quantity[]" value="{{ $cart->quantity }}">
                                             <div class="inc qtybutton plus{{ $cart->id }}">+</div>

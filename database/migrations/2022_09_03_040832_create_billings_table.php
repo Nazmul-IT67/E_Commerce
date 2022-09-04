@@ -17,7 +17,6 @@ class CreateBillingsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('first_name');
-            $table->string('last_name');
             $table->string('company_name')->nullable();
             $table->foreignId('country_id');
             $table->foreignId('city_id');

@@ -29,7 +29,7 @@
                             @csrf
                             <div class="row">
                                 <div class="col-sm-6 col-12">
-                                    <p>First Name *</p>
+                                    <p>Full Name *</p>
                                     <input type="text" name="name">
                                 </div>
 
@@ -52,7 +52,7 @@
                                     <p>Country</p>
                                     <select id="s_country" name="country_id">
                                         <option value="1">Select Your Country</option>
-                                        <option value="2">bangladesh</option>
+                                        <option value="2">Bangladesh</option>
                                         <option value="3">Algeria</option>
                                         <option value="4">Afghanistan</option>
                                         <option value="5">Ghana</option>
@@ -65,12 +65,22 @@
 
                                 <div class="col-sm-6 col-12">
                                     <p>Town/City *</p>
-                                    <input type="text" name="zipcode">
+                                    <select id="s_country" name="city_id">
+                                        <option value="1">Select Your City</option>
+                                        <option value="2">Bangladesh</option>
+                                        <option value="3">Algeria</option>
+                                        <option value="4">Afghanistan</option>
+                                        <option value="5">Ghana</option>
+                                        <option value="6">Albania</option>
+                                        <option value="7">Bahrain</option>
+                                        <option value="8">Colombia</option>
+                                        <option value="9">Dominican Republic</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-sm-6 col-12">
                                     <p>Postcode/ZIP</p>
-                                    <input type="email" name="zipcode">
+                                    <input type="text" name="zipcode">
                                 </div>
 
                                 <div class="col-sm-6 col-12">
@@ -80,11 +90,11 @@
 
 
                                 <div class="col-12">
-                                    <input value="1" id="toggle2" type="checkbox">
+                                    <input value="1" id="toggle2" name="checkbox" type="checkbox">
                                     <label class="fontsize" for="toggle2">Ship to a different address?</label>
                                     <div class="row" id="open2">
                                         <div class="col-12">
-                                            <p>First Name *</p>
+                                            <p>Full Name *</p>
                                             <input type="text" name="s_name">
                                         </div>
 
@@ -107,22 +117,7 @@
                                             <p>Country</p>
                                             <select id="s_country" name="s_country_id">
                                                 <option value="1">Select Your Country</option>
-                                                <option value="2">bangladesh</option>
-                                                <option value="3">Algeria</option>
-                                                <option value="4">Afghanistan</option>
-                                                <option value="5">Ghana</option>
-                                                <option value="6">Albania</option>
-                                                <option value="7">Bahrain</option>
-                                                <option value="8">Colombia</option>
-                                                <option value="9">Dominican Republic</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <p>State/Country</p>
-                                            <select id="s_state" name="s_state_id">
-                                                <option value="1">Select Your Country</option>
-                                                <option value="2">bangladesh</option>
+                                                <option value="2">Bangladesh</option>
                                                 <option value="3">Algeria</option>
                                                 <option value="4">Afghanistan</option>
                                                 <option value="5">Ghana</option>
@@ -135,12 +130,22 @@
 
                                         <div class="col-12">
                                             <p>Town/City *</p>
-                                            <input type="text" name="s_zipcode">
+                                            <select id="s_state" name="s_city">
+                                                <option value="1">Select Your Country</option>
+                                                <option value="2">Bangladesh</option>
+                                                <option value="3">Algeria</option>
+                                                <option value="4">Afghanistan</option>
+                                                <option value="5">Ghana</option>
+                                                <option value="6">Albania</option>
+                                                <option value="7">Bahrain</option>
+                                                <option value="8">Colombia</option>
+                                                <option value="9">Dominican Republic</option>
+                                            </select>
                                         </div>
 
                                         <div class="col-12">
                                             <p>Postcode/ZIP</p>
-                                            <input type="email" name="s_zipcode">
+                                            <input type="text" name="s_zipcode">
                                         </div>
 
                                         <div class="col-12">
@@ -152,7 +157,7 @@
 
                                 <div class="col-12">
                                     <p>Order Notes </p>
-                                    <textarea name="massage" placeholder="Notes about Your Order, e.g.Special Note for Delivery"></textarea>
+                                    <textarea name="note" placeholder="Notes about Your Order, e.g.Special Note for Delivery"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -171,20 +176,20 @@
                             </ul>
                             <ul class="payment-method">
                                 <li class="form-check">
-                                    <input type="radio" name="payment" id="flexRadioDefault1">
-                                    <label for="flexRadioDefault1">Direct Bank Transfer</label>
+                                    <input type="radio" name="payment" value="bank" id="payment1">
+                                    <label for="payment1">Direct Bank Transfer</label>
                                 </li>
                                 <li class="form-check">
-                                    <input type="radio" name="payment" id="flexRadioDefault2">
-                                    <label for="flexRadioDefault2">Paypal</label>
+                                    <input type="radio" name="payment" value="paypal" id="payment2">
+                                    <label for="payment2">Paypal</label>
                                 </li>
                                 <li class="form-check">
-                                    <input type="radio" name="payment" id="flexRadioDefault3">
-                                    <label for="flexRadioDefault3">Credit Card</label>
+                                    <input type="radio" name="payment" value="card" id="payment3">
+                                    <label for="payment3">Credit Card</label>
                                 </li>
                                 <li class="form-check">
-                                    <input type="radio" name="payment" id="flexRadioDefault4">
-                                    <label for="flexRadioDefault4">Cash on Delivery</label>
+                                    <input type="radio" name="payment" value="cash" id="payment4">
+                                    <label for="payment4">Cash on Delivery</label>
                                 </li>
                             </ul>
                             <button>Place Order</button>

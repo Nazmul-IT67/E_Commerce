@@ -81,7 +81,7 @@
                                         <div class="modal-body d-flex">
                                             <div class="product-single-img w-50">
                                                 <img src="{{ asset('Images/' . $product->created_at->format('Y/m/') . $product->id . '/' . $product->thumbnail) }}"
-                                                    alt="">
+                                                alt="">
                                             </div>
                                             <div class="product-single-content w-50">
                                                 <h3>{{ $product->title }}</h3>

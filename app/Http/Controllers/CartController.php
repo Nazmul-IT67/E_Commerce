@@ -17,7 +17,7 @@ class CartController extends Controller
         if($old_id){
             $generate=$old_id;
         }else{
-            $times=5;
+            $times=42000;
             $generate=Str::random(10);
             Cookie::queue('cookie_id', $generate, $times);
         }
