@@ -107,3 +107,7 @@ Route::post('cupon-post', [CuponController::class, 'CuponPost'])->name('CuponPos
 */
 Route::get('checkout', [CheckoutController::class, 'Checkout'])->name('Checkout');
 Route::POST('checkout', [CheckoutController::class, 'CheckoutPost'])->name('CheckoutPost');
+Route::get('api/get-state-list/{slug}', [CheckoutController::class, 'GetState'])->name('GetState');
+Route::get('api/get-city-list/{slug}', [CheckoutController::class, 'GetCitys'])->name('GetCitys');
+Route::get('api/shiping-state-list/{slug}', [CheckoutController::class, 'ShipState'])->name('ShipState');
+Route::get('api/shiping-city-list/{slug}', [CheckoutController::class, 'ShipCitys'])->name('ShipCitys');

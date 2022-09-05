@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{ asset('front/assets/css/responsive.css') }}">
     <!-- modernizr css -->
     <script src="{{ asset('front/assets/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+    @yield('header_css')
 </head>
 
 <body>

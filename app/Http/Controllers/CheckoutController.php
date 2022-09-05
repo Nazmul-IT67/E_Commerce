@@ -6,7 +6,10 @@ use App\Models\Billing;
 use Illuminate\Http\Request;
 use App\Models\Checkout;
 use App\Models\Cart;
+use App\Models\City;
+use App\Models\Country;
 use App\Models\Shipping;
+use App\Models\State;
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
@@ -19,6 +22,7 @@ class CheckoutController extends Controller
     function Checkout(){
         return view('Frontend.Checkout.checkout',[
             'count'=>$count=Cart::count(),
+            'countrys'=>Country::orderBy('name', 'asc')->get(),
         ]);
     }
 
@@ -31,6 +35,7 @@ class CheckoutController extends Controller
             $billing->first_name=$request->name;
             $billing->company_name=$request->company_name;
             $billing->country_id=$request->country_id;
+            $billing->stste_id=$request->stste_id;
             $billing->city_id=$request->city_id;
             $billing->address=$request->address;
             $billing->zipcode=$request->zipcode;
@@ -46,6 +51,7 @@ class CheckoutController extends Controller
                 $shipping->first_name=$request->s_name;
                 $shipping->company_name=$request->s_company_name;
                 $shipping->country_id=$request->s_country_id;
+                $shipping->stste_id=$request->s_stste_id;
                 $shipping->city_id=$request->s_city;
                 $shipping->address=$request->s_address;
                 $shipping->zipcode=$request->s_zipcode;
@@ -70,5 +76,27 @@ class CheckoutController extends Controller
         else{
             return back();
         }
+    }
+
+
+    function GetState($id){
+        $state = State::where('country_id', $id)->get();
+        return response()->json($state);
+    }
+
+    function GetCitys($id){
+        $city = City::where('state_id', $id)->get();
+        return response()->json($city);
+    }
+
+
+    function ShipState($id){
+        $state = State::where('country_id', $id)->get();
+        return response()->json($state);
+    }
+
+    function GetShipCitysCitys($id){
+        $city = City::where('state_id', $id)->get();
+        return response()->json($city);
     }
 }

@@ -20,6 +20,7 @@ class CreateShippingsTable extends Migration
             $table->string('first_name');
             $table->string('company_name')->nullable();
             $table->foreignId('country_id');
+            $table->foreignId('stste_id');
             $table->foreignId('city_id');
             $table->string('address');
             $table->string('zipcode');

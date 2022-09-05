@@ -1,4 +1,7 @@
 @extends('Frontend.master')
+@section('header_css')
+    <link href="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
 @section('content')
     <!-- header-area end -->
     <!-- .breadcumb-area start -->
@@ -48,33 +51,27 @@
                                     <input type="text" name="address">
                                 </div>
 
-                                <div class="col-sm-6 col-12">
+                                <div class="col-sm-12 col-12">
                                     <p>Country</p>
-                                    <select id="s_country" name="country_id">
+                                    <select id="country_id" name="country_id">
                                         <option value="1">Select Your Country</option>
-                                        <option value="2">Bangladesh</option>
-                                        <option value="3">Algeria</option>
-                                        <option value="4">Afghanistan</option>
-                                        <option value="5">Ghana</option>
-                                        <option value="6">Albania</option>
-                                        <option value="7">Bahrain</option>
-                                        <option value="8">Colombia</option>
-                                        <option value="9">Dominican Republic</option>
+                                        @foreach ($countrys as $country)
+                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-6 col-12">
+                                    <p>State/Town</p>
+                                    <select id="state_id" name="state_id">
+
                                     </select>
                                 </div>
 
                                 <div class="col-sm-6 col-12">
                                     <p>Town/City *</p>
-                                    <select id="s_country" name="city_id">
-                                        <option value="1">Select Your City</option>
-                                        <option value="2">Bangladesh</option>
-                                        <option value="3">Algeria</option>
-                                        <option value="4">Afghanistan</option>
-                                        <option value="5">Ghana</option>
-                                        <option value="6">Albania</option>
-                                        <option value="7">Bahrain</option>
-                                        <option value="8">Colombia</option>
-                                        <option value="9">Dominican Republic</option>
+                                    <select id="city_id" name="city_id">
+
                                     </select>
                                 </div>
 
@@ -113,33 +110,26 @@
                                             <input type="text" name="s_address">
                                         </div>
 
-                                        <div class="col-12">
+                                        <div class="col-sm-12 col-12">
                                             <p>Country</p>
-                                            <select id="s_country" name="s_country_id">
-                                                <option value="1">Select Your Country</option>
-                                                <option value="2">Bangladesh</option>
-                                                <option value="3">Algeria</option>
-                                                <option value="4">Afghanistan</option>
-                                                <option value="5">Ghana</option>
-                                                <option value="6">Albania</option>
-                                                <option value="7">Bahrain</option>
-                                                <option value="8">Colombia</option>
-                                                <option value="9">Dominican Republic</option>
+                                            <select id="s_country_id" name="s_country_id">
+                                                @foreach ($countrys as $country)
+                                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <p>State/Town</p>
+                                            <select id="s_state_id" name="s_stste_id">
+
                                             </select>
                                         </div>
 
                                         <div class="col-12">
                                             <p>Town/City *</p>
-                                            <select id="s_state" name="s_city">
-                                                <option value="1">Select Your Country</option>
-                                                <option value="2">Bangladesh</option>
-                                                <option value="3">Algeria</option>
-                                                <option value="4">Afghanistan</option>
-                                                <option value="5">Ghana</option>
-                                                <option value="6">Albania</option>
-                                                <option value="7">Bahrain</option>
-                                                <option value="8">Colombia</option>
-                                                <option value="9">Dominican Republic</option>
+                                            <select id="s_city_id" name="s_city">
+
                                             </select>
                                         </div>
 
@@ -200,4 +190,119 @@
         </div>
     </div>
     <!-- checkout-area end -->
+@endsection
+@section('footer_js')
+    <script>
+        $('#country_id').change(function() {
+            var countryID = $(this).val();
+            if (countryID) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('api/get-state-list') }}/" + countryID,
+                    success: function(res) {
+                        if (res) {
+                            $("#state_id").empty();
+                            $("#state_id").append('<option>Select</option>');
+                            $.each(res, function(key, value) {
+                                $("#state_id").append('<option value="' + value.id + '">' + value
+                                    .name + '</option>');
+                            });
+
+                        } else {
+                            $("#state_id").empty();
+                        }
+                    }
+                });
+            } else {
+                $("#state_id").empty();
+                $("#city_id").empty();
+            }
+        });
+
+        $('#state_id').on('change', function() {
+            var stateID = $(this).val();
+            if (stateID) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('api/get-city-list') }}/" + stateID,
+                    success: function(res) {
+                        if (res) {
+                            $("#city_id").empty();
+                            $("#city_id").append('<option>Select</option>');
+                            $.each(res, function(key, value) {
+                                $("#city_id").append('<option value="' + value.id + '">' + value
+                                    .name + '</option>');
+                            });
+
+                        } else {
+                            $("#city_id").empty();
+                        }
+                    }
+                });
+            } else {
+                $("#city_id").empty();
+            }
+
+        });
+
+        $(document).ready(function() {
+            $('#country_id, #state_id, #city_id').select2();
+        });
+
+
+
+        $('#s_country_id').change(function() {
+            var countryID = $(this).val();
+            if (countryID) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('api/get-state-list') }}/" + countryID,
+                    success: function(res) {
+                        if (res) {
+                            $("#s_state_id").empty();
+                            $("#s_state_id").append('<option>Select</option>');
+                            $.each(res, function(key, value) {
+                                $("#s_state_id").append('<option value="' + value.id + '">' + value
+                                    .name + '</option>');
+                            });
+
+                        } else {
+                            $("#s_state_id").empty();
+                        }
+                    }
+                });
+            } else {
+                $("#s_state_id").empty();
+                $("#s_city_id").empty();
+            }
+        });
+
+        $('#s_state_id').on('change', function() {
+            var stateID = $(this).val();
+            if (stateID) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('api/get-city-list') }}/" + stateID,
+                    success: function(res) {
+                        if (res) {
+                            $("#s_city_id").empty();
+                            $("#s_city_id").append('<option>Select</option>');
+                            $.each(res, function(key, value) {
+                                $("#s_city_id").append('<option value="' + value.id + '">' + value
+                                    .name + '</option>');
+                            });
+
+                        } else {
+                            $("#s_city_id").empty();
+                        }
+                    }
+                });
+            } else {
+                $("#s_city_id").empty();
+            }
+
+        });
+
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
