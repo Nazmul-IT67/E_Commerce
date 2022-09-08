@@ -80,8 +80,8 @@
                                             <a href="{{ route('register') }}"> Register</a>
                                         @endauth
                                     </li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
+                                    <li><a href="{{ route('CartProduct') }}">Cart</a></li>
+                                    <li><a href="{{ route('Checkout') }}">Checkout</a></li>
                                     <li><a href="wishlist.html">wishlist</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}">

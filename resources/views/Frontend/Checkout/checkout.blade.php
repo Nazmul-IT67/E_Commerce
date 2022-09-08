@@ -112,7 +112,8 @@
 
                                         <div class="col-sm-12 col-12">
                                             <p>Country</p>
-                                            <select id="s_country_id" name="s_country_id">
+                                            <select id="s_country_id" name="s_country">
+                                                <option value="1">Select Your Country</option>
                                                 @foreach ($countrys as $country)
                                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
                                                 @endforeach
@@ -121,7 +122,7 @@
 
                                         <div class="col-12">
                                             <p>State/Town</p>
-                                            <select id="s_state_id" name="s_stste_id">
+                                            <select id="s_state_id" name="s_stste">
 
                                             </select>
                                         </div>
@@ -150,46 +151,48 @@
                                     <textarea name="note" placeholder="Notes about Your Order, e.g.Special Note for Delivery"></textarea>
                                 </div>
                             </div>
-                        </div>
                     </div>
+                </div>
 
-                    <div class="col-lg-4">
-                        <div class="order-area">
-                            <h3>Your Order</h3>
-                            <ul class="total-cost">
-                                <li>Pure Nature Honey <span class="pull-right">$139.00</span></li>
-                                <li>Your Product Name <span class="pull-right">$100.00</span></li>
-                                <li>Pure Nature Honey <span class="pull-right">$141.00</span></li>
-                                <li>Subtotal <span class="pull-right"><strong>$380.00</strong></span></li>
-                                <li>Shipping <span class="pull-right">Free</span></li>
-                                <li>Total<span class="pull-right">$380.00</span></li>
-                            </ul>
-                            <ul class="payment-method">
-                                <li class="form-check">
-                                    <input type="radio" name="payment" value="bank" id="payment1">
-                                    <label for="payment1">Direct Bank Transfer</label>
-                                </li>
-                                <li class="form-check">
-                                    <input type="radio" name="payment" value="paypal" id="payment2">
-                                    <label for="payment2">Paypal</label>
-                                </li>
-                                <li class="form-check">
-                                    <input type="radio" name="payment" value="card" id="payment3">
-                                    <label for="payment3">Credit Card</label>
-                                </li>
-                                <li class="form-check">
-                                    <input type="radio" name="payment" value="cash" id="payment4">
-                                    <label for="payment4">Cash on Delivery</label>
-                                </li>
-                            </ul>
-                            <button>Place Order</button>
-                        </div>
+                <div class="col-lg-4">
+                    <div class="order-area">
+                        <h3>Your Order</h3>
+                        <ul class="total-cost">
+                            <li>Pure Nature Honey <span class="pull-right">$139.00</span></li>
+                            <li>Your Product Name <span class="pull-right">$100.00</span></li>
+                            <li>Pure Nature Honey <span class="pull-right">$141.00</span></li>
+                            <li>Subtotal <span class="pull-right"><strong>$380.00</strong></span></li>
+                            <li>Shipping <span class="pull-right">Free</span></li>
+                            <li>Total<span class="pull-right">$380.00</span></li>
+                        </ul>
+                        <ul class="payment-method">
+                            <li class="form-check">
+                                <input type="radio" name="payment" value="bank" id="payment1">
+                                <label for="payment1">Direct Bank Transfer</label>
+                            </li>
+                            <li class="form-check">
+                                <input type="radio" name="payment" value="paypal" id="payment2">
+                                <label for="payment2">Paypal</label>
+                            </li>
+                            <li class="form-check">
+                                <input type="radio" name="payment" value="card" id="payment3">
+                                <label for="payment3">Credit Card</label>
+                            </li>
+
+                            <li class="form-check">
+                                <input type="radio" name="payment" value="cash" id="payment4">
+                                <label for="payment4">Cash on Delivery</label>
+                            </li>
+                        </ul>
+                        <button>Place Order</button>
                     </div>
+                </div>
                 </form>
             </div>
         </div>
     </div>
     <!-- checkout-area end -->
+
 @endsection
 @section('footer_js')
     <script>
@@ -202,9 +205,10 @@
                     success: function(res) {
                         if (res) {
                             $("#state_id").empty();
-                            $("#state_id").append('<option>Select</option>');
+                            $("#state_id").append('<option>Select Your State</option>');
                             $.each(res, function(key, value) {
-                                $("#state_id").append('<option value="' + value.id + '">' + value
+                                $("#state_id").append('<option value="' + value.id + '">' +
+                                    value
                                     .name + '</option>');
                             });
 
@@ -228,7 +232,7 @@
                     success: function(res) {
                         if (res) {
                             $("#city_id").empty();
-                            $("#city_id").append('<option>Select</option>');
+                            $("#city_id").append('<option>Select Your City</option>');
                             $.each(res, function(key, value) {
                                 $("#city_id").append('<option value="' + value.id + '">' + value
                                     .name + '</option>');
@@ -260,9 +264,10 @@
                     success: function(res) {
                         if (res) {
                             $("#s_state_id").empty();
-                            $("#s_state_id").append('<option>Select</option>');
+                            $("#s_state_id").append('<option>Select Your State</option>');
                             $.each(res, function(key, value) {
-                                $("#s_state_id").append('<option value="' + value.id + '">' + value
+                                $("#s_state_id").append('<option value="' + value.id + '">' +
+                                    value
                                     .name + '</option>');
                             });
 
@@ -286,9 +291,10 @@
                     success: function(res) {
                         if (res) {
                             $("#s_city_id").empty();
-                            $("#s_city_id").append('<option>Select</option>');
+                            $("#s_city_id").append('<option>Select Your City</option>');
                             $.each(res, function(key, value) {
-                                $("#s_city_id").append('<option value="' + value.id + '">' + value
+                                $("#s_city_id").append('<option value="' + value.id + '">' +
+                                    value
                                     .name + '</option>');
                             });
 
@@ -302,7 +308,7 @@
             }
 
         });
-
     </script>
+    {{-- Input Search Bar --}}
     <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
