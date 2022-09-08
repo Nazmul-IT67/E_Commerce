@@ -31,43 +31,38 @@ class CheckoutController extends Controller
         $check=$request->checkbox ?? 1;
         $auth=Auth::id();
         if($request->payment=='bank'){
-            // $billing=new Billing;
-            // $billing->user_id=$auth;
-            // $billing->first_name=$request->name;
-            // $billing->company_name=$request->company_name;
-            // $billing->country_id=$request->country_id;
-            // $billing->state_id=$request->state_id;
-            // $billing->city_id=$request->city_id;
-            // $billing->address=$request->address;
-            // $billing->zipcode=$request->zipcode;
-            // $billing->email=$request->email;
-            // $billing->phone=$request->phone;
-            // $billing->shipping_address=$check;
-            // $billing->save();
+            $billing=new Billing;
+            $billing->user_id=$auth;
+            $billing->first_name=$request->name;
+            $billing->company_name=$request->company_name;
+            $billing->country_id=$request->country_id;
+            $billing->state_id=$request->state_id;
+            $billing->city_id=$request->city_id;
+            $billing->address=$request->address;
+            $billing->zipcode=$request->zipcode;
+            $billing->email=$request->email;
+            $billing->phone=$request->phone;
+            $billing->shipping_address=$check;
+            $billing->save();
 
-            // if($check == 2){
-            //     $shipping=new Shipping;
-            //     $shipping->user_id=$auth;
-            //     $shipping->biling_id=$billing->id;
-            //     $shipping->first_name=$request->s_name;
-            //     $shipping->company_name=$request->s_company_name;
-            //     $shipping->country_id=$request->s_country;
-            //     $shipping->state_id=$request->s_state;
-            //     $shipping->city_id=$request->s_city;
-            //     $shipping->address=$request->s_address;
-            //     $shipping->zipcode=$request->s_zipcode;
-            //     $shipping->email=$request->s_email;
-            //     $shipping->phone=$request->s_phone;
-            //     $shipping->note=$request->note;
-            //     $shipping->save();
+            if($check == 2){
+                $shipping=new Shipping;
+                $shipping->user_id=$auth;
+                $shipping->biling_id=$billing->id;
+                $shipping->first_name=$request->s_name;
+                $shipping->company_name=$request->s_company_name;
+                $shipping->country_id=$request->s_country;
+                $shipping->state_id=$request->s_state;
+                $shipping->city_id=$request->s_city;
+                $shipping->address=$request->s_address;
+                $shipping->zipcode=$request->s_zipcode;
+                $shipping->email=$request->s_email;
+                $shipping->phone=$request->s_phone;
+                $shipping->note=$request->note;
+                $shipping->save();
 
-            // }
-
-            $old_id=$request->cookie('cookie_id');
-            $carts=Cart::where('cookie_id', $old_id)->get();
-            foreach($carts as $cart){
-                echo ProductAttribute::where('product_id', $cart->product_id)->first('price');
             }
+
         }
         elseif($request->payment=='paypal'){
             // $billing=new Billing;
