@@ -12,7 +12,9 @@
         "laravel/breeze": "1.9.2",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "srmklive/paypal": "^3.0",
+        "stripe/stripe-php": "^9.5"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

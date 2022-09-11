@@ -27,7 +27,7 @@ class CreateBillingsTable extends Migration
             $table->string('phone');
             $table->string('cupon')->nullable();
             $table->string('total_amount')->nullable();
-            $table->string('payment_type');
+            $table->string('payment_type')->nullable();;
             $table->string('payment_status')->default(1);
             $table->string('product_status')->default(1);
             $table->string('shipping_address')->default(1);

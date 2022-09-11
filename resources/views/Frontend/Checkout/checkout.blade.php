@@ -87,8 +87,8 @@
 
 
                                 <div class="col-12">
-                                    <input value="1" id="toggle2" name="checkbox" type="checkbox">
-                                    <label class="fontsize" for="toggle2">Ship to a different address?</label>
+                                    <input value="2" id="toggle2" name="checkbox" type="checkbox">
+                                    <label class="fontsize" for="toggle2">Shiping to a different address?</label>
                                     <div class="row" id="open2">
                                         <div class="col-12">
                                             <p>Full Name *</p>
@@ -112,7 +112,7 @@
 
                                         <div class="col-sm-12 col-12">
                                             <p>Country</p>
-                                            <select id="s_country_id" name="s_country">
+                                            <select id="s_country_id" name="s_country_id">
                                                 <option value="1">Select Your Country</option>
                                                 @foreach ($countrys as $country)
                                                     <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -122,14 +122,14 @@
 
                                         <div class="col-12">
                                             <p>State/Town</p>
-                                            <select id="s_state_id" name="s_stste">
+                                            <select id="s_state_id" name="s_state_id">
 
                                             </select>
                                         </div>
 
                                         <div class="col-12">
                                             <p>Town/City *</p>
-                                            <select id="s_city_id" name="s_city">
+                                            <select id="s_city_id" name="s_city_id">
 
                                             </select>
                                         </div>
@@ -151,6 +151,20 @@
                                     <textarea name="note" placeholder="Notes about Your Order, e.g.Special Note for Delivery"></textarea>
                                 </div>
                             </div>
+                            <style>
+                                .select2-container .select2-selection--single {
+                                    box-sizing: border-box;
+                                    cursor: pointer;
+                                    display: block;
+                                    height: 38px;
+                                    user-select: none;
+                                    -webkit-user-select: none;
+                                }
+
+                                .select2-container .select2-selection--single .select2-selection__rendered {
+                                    padding: 5px
+                                }
+                            </style>
                     </div>
                 </div>
 
@@ -167,16 +181,16 @@
                         </ul>
                         <ul class="payment-method">
                             <li class="form-check">
-                                <input type="radio" name="payment" value="bank" id="payment1">
-                                <label for="payment1">Direct Bank Transfer</label>
+                                <input type="radio" name="payment" value="bank" id="payment">
+                                <label for="payment">Bank</label>
+                            </li>
+                            <li class="form-check">
+                                <input type="radio" name="payment" value="card" id="payment1">
+                                <label for="payment1">Cradit Card</label>
                             </li>
                             <li class="form-check">
                                 <input type="radio" name="payment" value="paypal" id="payment2">
                                 <label for="payment2">Paypal</label>
-                            </li>
-                            <li class="form-check">
-                                <input type="radio" name="payment" value="card" id="payment3">
-                                <label for="payment3">Credit Card</label>
                             </li>
 
                             <li class="form-check">
@@ -192,7 +206,6 @@
         </div>
     </div>
     <!-- checkout-area end -->
-
 @endsection
 @section('footer_js')
     <script>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrtersTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateOrtersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orters', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('billing_id');
             $table->foreignId('product_id');
@@ -34,6 +34,6 @@ class CreateOrtersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orters');
+        Schema::dropIfExists('orders');
     }
 }
