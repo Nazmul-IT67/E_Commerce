@@ -14,6 +14,8 @@ use App\Models\Shipping;
 use App\Models\State;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
+
 
 class CheckoutController extends Controller
 {
@@ -104,7 +106,7 @@ class CheckoutController extends Controller
 
 
 
-//////////////////////////////////////
+    //////////////////////////////////////
     function GetState($id){
         $state = State::where('country_id', $id)->get();
         return response()->json($state);
@@ -121,4 +123,8 @@ class CheckoutController extends Controller
         $city = City::where('state_id', $id)->get();
         return response()->json($city);
     }
+
+
 }
+
+

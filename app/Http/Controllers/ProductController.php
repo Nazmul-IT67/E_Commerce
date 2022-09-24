@@ -7,9 +7,6 @@ use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
-use App\Models\Brand;
-use App\Models\Color;
-use App\Models\Size;
 use App\Models\ProductGallery;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
@@ -22,7 +19,6 @@ class ProductController extends Controller
         return view('Backend.Product.product-add',[
             'last'=>$last,
             'categorys'=>Category::orderBy('category_name','asc')->get(),
-            'brands'=>Brand::orderBy('brand_name','asc')->get(),
         ]);
     }
 
@@ -37,17 +33,16 @@ class ProductController extends Controller
         ]);
 
         $product=new Product;
-        // if($request->hasFile('thumbnail')){
-        //     $image=$request->file('thumbnail');
-        //     $ext=$request->title.'.'.$image->getClientOriginalExtension();
-        //     Image::make($image)->save(public_path('Images/'.$ext));
-        //     $product->thumbnail=$ext;
-        // }
+        if($request->hasFile('thumbnail')){
+            $image=$request->file('thumbnail');
+            $ext=$request->title.'.'.$image->getClientOriginalExtension();
+            Image::make($image)->save(public_path('Images/'.$ext));
+            $product->thumbnail=$ext;
+        }
         $product->title=$request->title;
         $product->slug=$request->slug;
         $product->category_id=$request->category_id;
         $product->subcategory_id=$request->subcategory_id;
-        $product->brand_id=$request->brand_id;
         $product->summery=$request->summery;
         $product->description=$request->description;
         $product->price=$request->price;
@@ -113,7 +108,6 @@ class ProductController extends Controller
             'categorys'=>Category::orderBy('category_name','asc')->get(),
             'subcategorys'=>SubCategory::where('category_id', $product->category_id)->orderBy('subcategory_name','asc')->get(),
             'product'=>$product,
-            'brands'=>Brand::orderBy('brand_name','asc')->get(),
         ]);
     }
 
@@ -169,40 +163,5 @@ class ProductController extends Controller
             'last'=>$last,
         ]);
     }
-    function BrandPost(Request $request){
-        $brand=New Brand;
-        $brand->brand_name=$request->brand_name;
-        $brand->save();
-        return back();
-    }
 
-
-    function AddColor(){
-        $last_value=collect(request()->segments())->last();
-        $last=Str::of($last_value)->replace('-','');
-        return view('Backend.Brand.color',[
-            'last'=>$last,
-        ]);
-    }
-    function ColorPost(Request $request){
-        $color=New Color;
-        $color->color_name=$request->color_name;
-        $color->save();
-        return back();
-    }
-
-
-    function AddSize(){
-        $last_value=collect(request()->segments())->last();
-        $last=Str::of($last_value)->replace('-','');
-        return view('Backend.Brand.size',[
-            'last'=>$last,
-        ]);
-    }
-    function SizePost(Request $request){
-        $size=New Size;
-        $size->size_name=$request->size_name;
-        $size->save();
-        return back();
-    }
 }
